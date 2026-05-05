@@ -52,7 +52,7 @@ Render job descriptions and details (everything) dynamically with PHP in jobs.ph
     <link rel="stylesheet" href="styles/styles.css">
     <!-- embeded CSS adds a box around both jobs individually, and then changes the color of the text of the headings and content -->
     <style>
-        .job_entry, #job_descriptions {
+        .job_entry {
             border: 4px solid purple;
             border-radius: 14px;
             margin: 1em;
@@ -77,11 +77,7 @@ Render job descriptions and details (everything) dynamically with PHP in jobs.ph
 
     <!-- INLINE CSS to change font-size to 2x and color of the text to plum-->
     <h2 style="font-size: 2em; color: plum;">Current Open Jobs</h2>
-    <!-- Ordered list towards top of page showing open jobs  -->
-    <ol id="Current_job_openings">
-        <li><a href="#job1">AI Implimentation Lead</a></li>
-        <li><a href="#job2">Public Liason Officer</a></li>
-    </ol>
+
     <!-- aside, main adjacent content, in this case showing employee reviews  -->
     <aside>
         <h3>Notes from our current team</h3>
