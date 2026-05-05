@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8"> <!-- Character set -->
+    <meta name="description" content="Apply page">
+    <meta name="keywords" content="Application, Smart City, Energy, Employment, Infrastructure">
+    <meta name="author" content="Alexandra Stanford">
+    <title>InfraWatch - Apply</title>
+    <link rel="stylesheet" href="/Styles/styles.css">
+
+    <style>
+        /* Internal Css */
+        legend{
+            font-size: 1.5em;
+            text-align:left;
+        }
+    </style>
+
+    </head>
+<body>
+    <header>
+        <a href="images/logo.png"> <img src="images/logo_small.png" class="header" id="logo"  alt="InfraWatch Logo"></a> <!-- the alt is just added for acessibility-->
+            <!-- AI USE ACKNOWLEDGEMENT: The InfraWatch logo (logo.png) was generated using Canva AI.
+            Prompt used: "a camera lens inside a circuit"
+            Source: https://www.canva.com -->
+        <!-- Title -->
+        <h1 class="header">InfraWatch - Apply</h1>
+
+        <p class="header hero-slogan">Powering Smarter Infrastructure.</p>
+         <!--Navigation-->
+        <nav class="header" id="nav">
+            <a id="about" href="about.html">About</a>
+            <a id="apply" href="apply.html">Apply</a>
+            <a id="index" href="index.html">Index</a>
+            <a id="jobs" href="jobs.html">Jobs</a>
+        </nav>
+    </header>
+
+    <div id="applydiv">
+    <h2>Apply for a position at InfraWatch</h2>
+
+    <form action="https://mercury.swin.edu.au/it000000/formtest.php" method="post">
+        <!--Reference number fieldset-->
+        <fieldset>
+        <legend>&nbsp;Reference Number:&nbsp;</legend>
+            <label for="reference">Reference number:</label><br>
+            <input type="text" id="reference" name="reference" placeholder="Job Reference Number" 
+            pattern="^[a-zA-Z1-9]{1,20}$" required><br> 
+            <!--Exactly 5 alphanumeric characters-->
+        </fieldset>
+        <!--Personal details fieldset-->
+        <fieldset>
+        <legend>&nbsp;Personal details:&nbsp;</legend>
+            <label for="firstname">First Name:</label><br>                          
+            <input class="alphanumerical20" type="text" id="firstname" name="firstname" placeholder="First Name"
+            pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ]+{1,20}$" required><br> 
+            <!--Max 20 alphanumerical characters, including accented characters -->
+            <label for="lastname">Last Name:</label><br>
+            <input class="alphanumerical20" type="text" id="lastname" name="lastname" placeholder="Last Name" 
+            pattern="^[a-zA-Z]{1,20}$" required><br>
+            <!--Max 20 alphanumerical characters, including accented characters -->
+            <label for="dob">Date Of Birth:</label><br>
+            <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy"
+            pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$" required>
+            <!--dd/mm/yyyy regex format-->
+            <!--Gender fieldset-->
+            <fieldset>
+                <!--Gender radio fieldset-->
+            <legend>&nbsp;Gender:&nbsp;</legend>
+
+                <input type="radio" name="gender" value="female" id="female" required>
+                        <label for="female">Female</label><br>
+
+                <input type="radio" name="gender" value="male" id="male">
+                        <label for="male">Male</label><br>
+
+                <input type="radio" name="gender" value="non-binary" id="non-binary">
+                        <label for="non-binary">Non-Binary</label><br>
+
+                <input type="radio" name="gender" value="null" id="null">
+                <label for="null">Prefer not to say</label><br>
+                <!-- Custom Gender field, probably needs more work to post the value of the
+                text box instead of posting seperately, probably needs JS but that isn't allowed -->
+                <input type="radio" name="gender" value="other" id="other">
+                <label for="other">Other:</label><br>
+                <input type="text" name="custom-gender" id="custom" placeholder="Please specify:">
+            </fieldset>
+        </fieldset>
+        <!--Contact details fieldset-->
+        <fieldset>
+        <legend>&nbsp;Contact details:&nbsp;</legend>
+            <!--Contact details-->
+            <label for="address">Street Address:</label><br>
+            <input class="char40" type="text" id="address" name="address" placeholder="Max 40 characters" 
+            pattern="^{1,40}$" required><br>
+            <!--Max 40 characters-->  
+
+            <label for="suburb">Suburb/Town:</label><br>
+            <input class="char40" type="text" id="suburb" name="suburb" placeholder="Max 40 characters" 
+            pattern="^{1,40}$" required><br>  
+            <!--Max 40 characters-->
+
+            <label for="postcode">Postcode:</label><br>
+            <input type="text" id="postcode" name="postcode" placeholder="0000" 
+            pattern="^[0-9]{4}$" required><br>  
+            <!--4 digits 0-9-->
+            <!--Add functionality for people applying from other countries?-->
+            <label for="state">State:</label>
+            <br>
+            <select name="state" id="state" required size = 1>
+                <option value="">--Please select your state--</option>
+                <option value="VIC">Victoria</option>
+                <option value="NSW">New South Wales</option>
+                <option value="QLD">Queensland</option>
+                <option value="NT">Nothern Territory</option>
+                <option value="WA">Western Australia</option>
+                <option value="SA">South Australia</option>
+                <option value="TAS">Tasmania</option>
+                <option value="ACT">Australian Capital Territory</option>
+            </select>
+            <br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" placeholder="example@example.com" required><br>  
+            <!--Email input type-->
+
+            <label for="phone">Phone number:</label><br>
+            <input type="text" id="phone" name="phone" placeholder="8-12 digits" 
+            pattern="^[0-9]{8,12}$" required><br>  
+            <!--8-12 digits-->
+            <!-- add functionaility for international phone numbers? -->
+
+        </fieldset>
+        <!--Skills/qualifications fieldset-->
+        <fieldset>
+
+        <legend>&nbsp;Skills / Qualifications:&nbsp;</legend>
+                
+            <input type="checkbox" name="skills[]" value="ai" id="ai">
+            <label for="ai">A stong and up to date understanding of AI infrustructure</label><br>
+
+            <input type="checkbox" name="skills[]" value="leadership" id="leadership">
+            <label for="leadership">3 Years of Senior Leadership</label><br>
+
+            <input type="checkbox" name="skills[]" value="attitude" id="attitude">
+            <label for="attitude">A can do attitude that is able to work around a dynamic team enviroment</label><br>
+
+            <input type="checkbox" name="skills[]" value="licence" id="licence">
+            <label for="licence">A current and valid driving license</label><br>
+
+            <input type="checkbox" name="skills[]" value="car" id="car">
+            <label for="car">A working vehicle capable of carrying light equipment such as cameras</label><br>
+
+            <input type="checkbox" name="skills[]" value="public role" id="public">
+            <label for="public">3 years in a public facing role</label><br>
+
+            <input type="checkbox" name="skills[]" value="customer service" id="customer">
+            <label for="customer">Customer service management</label><br>
+
+            <input type="checkbox" name="skills[]" value="adobe suite" id="adobe">
+            <label for="adobe">Adobe suite experience</label><br>
+           
+            <input type="checkbox" name="skills[]" value="office 365" id="office">
+            <label for="office">Office 365 experience</label><br>
+
+            <input type="checkbox" name="skills[]" value="coffee & jokes" id="coffee">
+            <label for="coffee">A taste for good jokes and coffee</label><br>
+            <br>
+            <label for="other-skills">Other Skills:</label>
+            <br>
+            <textarea name="other-skills" id="other-skills" cols="50" rows="5"
+            placeholder="Enter other applicable skills here"
+            style="resize:vertical; width: 98%;"></textarea>
+            <!--^ inline CSS-->
+            <br>
+
+  
+
+    </fieldset>
+
+
+        <!--Book and reset form-->
+        <input class="book" type="submit" value="Submit form">
+        <input class="book" type="reset" value="Reset form">    
+
+
+    </form>
+</div>
+</body>
+</html>
