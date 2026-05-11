@@ -421,5 +421,47 @@ footer p {
     caption      { font-size: 2.5vw; }
 }
 
+    /* makes images never overflow their container */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* when screen is 768px or smaller (tablets/phones) */
+    @media (max-width: 768px) 
+    {
+
+       /* stack nav links vertically instead of horizontal */
+        nav#nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        }
+
+      /* make tables scroll sideways instead of breaking layout */
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+
+       /* make the smart city image full width on mobile */
+      .hero-section img {
+        width: 100% !important;
+       }
+
+      /* reduce font sizes so text doesn't overflow */
+      h1 { font-size: 1.4rem; }
+      h2 { font-size: 1.2rem; }
+
+      /* make form inputs full width on mobile */
+      input[type="text"],
+      input[type="email"],
+      select,
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        }
+    }
 /* #endregion Noor Section */
 /*--------------------------------------------------------*/
