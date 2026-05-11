@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2026 at 07:26 AM
+-- Generation Time: May 11, 2026 at 04:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,8 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `applied web project part 2`
 --
-CREATE DATABASE IF NOT EXISTS `applied web project part 2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `applied web project part 2`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contributions`
+--
+
+CREATE TABLE `contributions` (
+  `firstname` varchar(20) NOT NULL,
+  `lastname` varchar(20) NOT NULL,
+  `studentid` int(10) NOT NULL,
+  `part_1_contributions` varchar(30) NOT NULL,
+  `part_2_contributions` varchar(30) DEFAULT NULL,
+  `quote` varchar(50) NOT NULL,
+  `quote_in_different_lang` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contributions`
+--
+
+INSERT INTO `contributions` (`firstname`, `lastname`, `studentid`, `part_1_contributions`, `part_2_contributions`, `quote`, `quote_in_different_lang`) VALUES
+('Ashley', 'Butler', 103429611, 'CSS files, jobs.html, submitti', '', 'I choose a lazy person to do a hard job. Because a', '「私は難しい仕事には怠け者を選ぶ。なぜなら、怠け者は楽な方法を見つけるからだ。'),
+('William', 'Lloyd', 105913190, 'CSS files, about.html', '', 'Good morning China. Now I have ice cream', '早上好中国.现在我有冰淇淋'),
+('Noor', 'Fatima Nisar', 106216609, 'CSS files, index.html', '', 'It is very difficult to keep a lamp lit in the mid', 'بہت مشکل ہے، آندھیوں میں چراغ جلانا'),
+('Alex', 'Stanford', 106340883, 'CSS files, apply.html', '', 'We must choose between champagne for a few or drin', 'Il faut choisir entre le champagne pour quelques-u');
 
 -- --------------------------------------------------------
 
@@ -29,7 +53,6 @@ USE `applied web project part 2`;
 -- Table structure for table `jobs`
 --
 
-DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE `jobs` (
   `job_ref` int(5) NOT NULL,
   `job_title` varchar(255) DEFAULT NULL,
@@ -51,6 +74,12 @@ INSERT INTO `jobs` (`job_ref`, `job_title`, `salary`, `reports_to`, `description
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `contributions`
+--
+ALTER TABLE `contributions`
+  ADD PRIMARY KEY (`studentid`);
 
 --
 -- Indexes for table `jobs`
