@@ -3,8 +3,18 @@
             <!-- AI USE ACKNOWLEDGEMENT: The InfraWatch logo (logo.png) was generated using Canva AI.
             Prompt used: "a camera lens inside a circuit"
             Source: https://www.canva.com -->
+       
         <!-- Title -->
-        <h1 class="header">InfraWatch - Apply</h1>
+        <title>
+           <?php echo isset($page_title) ? $page_title . " | InfraWatch" : "InfraWatch"; ?>
+        </title>
+        
+        <h1 class="header"> 
+            <?php 
+            // If $page_title is set, show it; otherwise, just show "InfraWatch"
+            echo isset($page_title) ? "InfraWatch - " . $page_title : "InfraWatch"; 
+            ?>
+        </h1>
 
         <p class="header hero-slogan">Powering Smarter Infrastructure.</p>
          <!--Navigation-->

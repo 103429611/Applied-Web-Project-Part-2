@@ -18,7 +18,10 @@
 
     </head>
 <body>
-<?php include 'header.inc'; ?>
+<?php
+    $page_title = "Apply"; // Set the specific title for this page
+    include 'header.inc'; 
+    ?>
 
     <div id="applydiv">
     <h2>Apply for a position at InfraWatch</h2>

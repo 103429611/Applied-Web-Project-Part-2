@@ -46,7 +46,11 @@
 </head>
 
 <body>
-<?php include 'header.inc'; ?>
+
+<?php
+    $page_title = "Index"; // Set the specific title for this page
+    include 'header.inc'; 
+?>
 
 <main>
     <section class="hero-section">

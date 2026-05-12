@@ -73,7 +73,11 @@ Render job descriptions and details (everything) dynamically with PHP in jobs.ph
 </head>
 
 <body>
-    <?php include 'header.inc'; ?>
+    
+    <?php
+    $page_title = "Jobs"; // Set the specific title for this page
+    include 'header.inc'; 
+    ?>
 
     <!-- INLINE CSS to change font-size to 2x and color of the text to plum-->
     <h2 style="font-size: 2em; color: plum;">Current Open Jobs</h2>
