@@ -46,22 +46,7 @@
 </head>
 
 <body>
-<header>
-    <a href="images/logo.png"> <img src="images/logo_small.png" class="header" id="logo"  alt="InfraWatch Logo"></a> <!-- the alt is just added for acessibility-->
-        <!-- AI USE ACKNOWLEDGEMENT: The InfraWatch logo (logo.png) was generated using Canva AI.
-        Prompt used: "a camera lens inside a circuit"
-        Source: https://www.canva.com -->
-    <h1 class="header" style="color:#ffffff;">InfraWatch - About</h1>
-    <p class="header" class="hero-slogan">Powering Smarter Infrastructure.</p>
- 
-
-        <nav class="header" id="nav"> <!--Navigation-->
-            <a id="about" href="about.html">About</a>
-            <a id="apply" href="apply.html">Apply</a>
-            <a id="index" href="index.html">Index</a>
-            <a id="jobs" href="jobs.html">Jobs</a>
-        </nav>
- </header>
+<?php include 'header.inc'; ?>
 
     <h3>We are...</h3>
     <ul>
@@ -113,4 +98,5 @@
             </table>
         </figcaption>
     </figure>
+        <?php include 'footer.inc'; ?>
 </body>
