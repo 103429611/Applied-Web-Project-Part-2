@@ -4,9 +4,9 @@
     <p class="header" id="subtitle">Powering Smarter Infrastructure.</p>
 
     <nav class="header" id="nav"> <!--Navigation-->
-        <a id="about" href="about.html">About</a>
-        <a id="apply" href="apply.html">Apply</a>
-        <a id="index" href="index.html">Index</a>
+        <a id="about" href="about.php">About</a>
+        <a id="apply" href="apply.php">Apply</a>
+        <a id="index" href="index.php">Index</a>
         <a id="jobs" href="jobs.php">Jobs</a>
     </nav>
 </header>
