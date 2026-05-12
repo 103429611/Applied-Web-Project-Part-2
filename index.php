@@ -46,20 +46,7 @@
 </head>
 
 <body>
- <header>
-    <a href="images/logo.png"> <img src="images/logo_small.png" class="header" id="logo"  alt="InfraWatch Logo" style="display: block; margin: auto;"></a> <!-- the alt is just added for acessibility-->
-    <h1 class="header" style="color:#ffffff;">InfraWatch - Index</h1>
-    <p class="header hero-slogan">Powering Smarter Infrastructure.</p>
- 
-
-        <nav class="header" id="nav"> <!--Navigation-->
-            <a id="about" href="about.html">About</a>
-            <a id="apply" href="apply.html">Apply</a>
-            <a id="index" href="index.html">Index</a>
-            <a id="jobs" href="jobs.html">Jobs</a>
-        </nav>
-    
- </header>
+<?php include 'header.inc'; ?>
 
 <main>
     <section class="hero-section">
@@ -141,15 +128,7 @@
 
 </main>
 
- <footer>
-    
-    <p>
-        <a href="https://student-team-y0h6dox9.atlassian.net/jira/software/projects/SCRUM/boards/1">Jira Board</a> |
-        <a href="https://github.com/103429611/Applied-Web-Project-Part-1-of-2">GitHub Repository</a> |
-        <a href="mailto:info@infrawatch.com.au">info@infrawatch.com.au</a> <!-- the mailto will directly open the user's email app-->
-    </p>
-    <p style="font-size: 0.75vw; color: #567890; margin-top: 0.5em;">© 2025 InfraWatch. All rights reserved.</p>
-</footer>
+    <?php include 'footer.inc'; ?>
 
 </body>
 </html>
