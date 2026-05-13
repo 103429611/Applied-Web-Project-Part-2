@@ -26,7 +26,7 @@
     <div id="applydiv">
     <h2>Apply for a position at InfraWatch</h2>
 
-    <form action="https://mercury.swin.edu.au/it000000/formtest.php" method="post">
+    <form action="process_eoi.php" method="post">
         <!--Reference number fieldset-->
         <fieldset>
             <?php
@@ -44,15 +44,14 @@
         <legend>&nbsp;Personal details:&nbsp;</legend>
             <label for="firstname">First Name:</label><br>                          
             <input class="alphanumerical20" type="text" id="firstname" name="firstname" placeholder="First Name"
-            pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ]+{1,20}$" required><br> 
-            <!--Max 20 alphanumerical characters, including accented characters -->
+            pattern="^[a-zA-Z]{1,20}$" required><br> 
+            <!--Max 20 alphanumerical characters-->
             <label for="lastname">Last Name:</label><br>
             <input class="alphanumerical20" type="text" id="lastname" name="lastname" placeholder="Last Name" 
             pattern="^[a-zA-Z]{1,20}$" required><br>
-            <!--Max 20 alphanumerical characters, including accented characters -->
+            <!--Max 20 alphanumerical characters-->
             <label for="dob">Date Of Birth:</label><br>
-            <input type="text" id="dob" name="dob" placeholder="dd/mm/yyyy"
-            pattern="^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$" required>
+            <input type="date" id="dob" name="dob" placeholder="dd/mm/yyyy" required>
             <!--dd/mm/yyyy regex format-->
             <!--Gender fieldset-->
             <fieldset>
@@ -159,7 +158,7 @@
             <br>
             <label for="other-skills">Other Skills:</label>
             <br>
-            <textarea name="other-skills" id="other-skills" cols="50" rows="5"
+            <textarea name="other_skills" id="other_skills" cols="50" rows="5"
             placeholder="Enter other applicable skills here"
             style="resize:vertical; width: 98%;"></textarea>
             <!--^ inline CSS-->
