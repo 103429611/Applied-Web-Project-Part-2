@@ -29,9 +29,13 @@
     <form action="https://mercury.swin.edu.au/it000000/formtest.php" method="post">
         <!--Reference number fieldset-->
         <fieldset>
+            <?php
+            // Check if the job_ref is set in the URL
+            $job_ref_value = isset($_GET['job_ref']) ? $_GET['job_ref'] : '';
+            ?>
         <legend>&nbsp;Reference Number:&nbsp;</legend>
             <label for="reference">Reference number:</label><br>
-            <input type="text" id="reference" name="reference" placeholder="Job Reference Number" 
+            <input type="text" id="reference" name="reference" placeholder="Job Reference Number" value="<?php echo htmlspecialchars($job_ref_value); ?>"
             pattern="^[a-zA-Z1-9]{1,20}$" required><br> 
             <!--Exactly 5 alphanumeric characters-->
         </fieldset>

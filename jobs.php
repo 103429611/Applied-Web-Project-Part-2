@@ -52,7 +52,7 @@ Render job descriptions and details (everything) dynamically with PHP in jobs.ph
     <link rel="stylesheet" href="styles/styles.css">
     <!-- embeded CSS adds a box around both jobs individually, and then changes the color of the text of the headings and content -->
     <style>
-        .job_entry {
+        #job_descriptions {
             border: 4px solid purple;
             border-radius: 14px;
             margin: 1em;
@@ -78,7 +78,7 @@ Render job descriptions and details (everything) dynamically with PHP in jobs.ph
     $page_title = "Jobs"; // Set the specific title for this page
     include 'header.inc'; 
     ?>
-
+<main>
     <!-- INLINE CSS to change font-size to 2x and color of the text to plum-->
     <h2 style="font-size: 2em; color: plum;">Current Open Jobs</h2>
 
@@ -95,10 +95,16 @@ Render job descriptions and details (everything) dynamically with PHP in jobs.ph
         <p>Don't tell them I'm hiding here!!</p>
     </aside>
 
+    <section id = "job_search" >
+        <form action="./job_search_result.php" method="GET">D0DAE2c4c4
+        <label for="job_ref">Search Job Ref No.</label>
+        <input type="search" id="job_ref" name="job_ref" placeholder="Search Job Ref No." required>
+        <button type="submit">Search</button>
+</form>
+    </section>
+
     <!--  Job descriptions of current open jobs -->
     <section id="job_descriptions">
-        <h3>Job Descriptions</h3>
-        <hr>
 
         <?php require_once("settings.php"); 
         $conn = mysqli_connect($host, $username, $password, $database );
@@ -109,46 +115,28 @@ Render job descriptions and details (everything) dynamically with PHP in jobs.ph
             $sql = "SELECT job_ref, job_title, salary, reports_to, description, essential_requirements, pref_requirements FROM jobs";
             $result = mysqli_query($conn, $sql);
             if($result && mysqli_num_rows($result) > 0){
-                while($row = mysqli_fetch_assoc($result)){
+                echo "<table border='1' cellpadding='1'>";
+                echo "<tr><th>Job Ref</th><th>Title</th><th>Salary</th><th>Reports To</th></tr>";
+            while($row = mysqli_fetch_assoc($result)){
                     $job_ref = htmlspecialchars($row['job_ref']);
                     $job_title = htmlspecialchars($row['job_title']);
-                    $salary = htmlspecialchars($row['salary']);
+                    $salary = '$' . number_format($row['salary'], 0, '.', ',');
                     $reports_to = htmlspecialchars($row['reports_to']);
-                    $description = htmlspecialchars($row['description']);
-                    $essential_requirements = htmlspecialchars($row['essential_requirements']);
-                    $pref_requirements = htmlspecialchars($row['pref_requirements']);
-                    $essentials_array = explode(", ", $essential_requirements);
-                    $pref_array = explode(", ", $pref_requirements);
-
-                    echo "<section class ='job_entry'>";
-                    echo "<h4>$job_title</h4>"; 
-                    echo "<p><strong>Job ref: </strong>$job_ref</p>";
-                    echo "<p><strong>Salary: </strong>$salary</p>";
-                    echo "<p><strong>Reporting to: </strong>$reports_to</p>";
-                    echo "<p><strong>Description: </strong>$description</p>";
-                    
-                    echo "<ol>";
-                        echo "<li>Essential Requirements";
-                            echo "<ul>";
-                            foreach ($essentials_array as $ess_item) {
-                                echo "<li>" . htmlspecialchars($ess_item) . "</li>";
-                            };
-                            echo "</ul>";
-                        echo "</li>";
-                        echo "<li>Preferred Requirements";
-                           echo "<ul>";
-                            foreach ($pref_array as $pref_item) {
-                                echo "<li>" . htmlspecialchars($pref_item) . "</li>";
-                            }
-                            echo "</ul>";
-                    echo "</ol>";
-                    echo "</section>";
+                    $url = "./job_search_result.php?job_ref=" . $job_ref;
+                    echo "<tr>";
+                    echo "<td><a href='$url'>" . $job_ref . "</a></td>";
+                    echo "<td>" . htmlspecialchars($row['job_title']) . "</td>";
+                    echo "<td>" . $salary . "</td>"; // Display formatted salary
+                    echo "<td>" . htmlspecialchars($row['reports_to']) . "</td>";
+                    echo "</tr>";
                 };
+                echo "</table>";
             };
         mysqli_close($conn);
         };
         ?>
     </section> <!-- job_descriptions section end -->
+</main>
     <?php include 'footer.inc'; ?>
 </body>
-    
+</html>

@@ -116,9 +116,18 @@ aside {
     box-shadow: 10px 10px 5px #aaaaaa;
 }
 
+#job_descriptions{
+    float: left;
+    width: 70%;
+
+}
 /*Aligns text for Job Descriptions to the center*/
 #job_descriptions h3{
     text-align: center;
+}
+
+#search{
+
 }
 
 
@@ -374,7 +383,7 @@ footer {
     padding: 1.5em;
     margin-top: 1em;
     border-top: 1px solid darkgrey;
-    color: #9ab8d0;
+    color: #c4c4c4;
 }
 
 /* inner divider line within the footer for visual separation */
@@ -388,7 +397,7 @@ footer hr {
 footer p {
     margin-top: 0.5em;
     font-size: 0.85vw;
-    color: #567890;
+    color: #c4c4c4;
 }
 
 @media (max-width: 768px) {
