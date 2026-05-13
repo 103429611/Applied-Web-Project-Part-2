@@ -36,7 +36,7 @@
         <legend>&nbsp;Reference Number:&nbsp;</legend>
             <label for="reference">Reference number:</label><br>
             <input type="text" id="reference" name="reference" placeholder="Job Reference Number" value="<?php echo htmlspecialchars($job_ref_value); ?>"
-            pattern="^[a-zA-Z1-9]{1,20}$" required><br> 
+            pattern="^[a-zA-Z1-9]{1,20}$"><br> 
             <!--Exactly 5 alphanumeric characters-->
         </fieldset>
         <!--Personal details fieldset-->
@@ -44,21 +44,21 @@
         <legend>&nbsp;Personal details:&nbsp;</legend>
             <label for="firstname">First Name:</label><br>                          
             <input class="alphanumerical20" type="text" id="firstname" name="firstname" placeholder="First Name"
-            pattern="^[a-zA-Z]{1,20}$" required><br> 
+            pattern="^[a-zA-Z]{1,20}$"><br> 
             <!--Max 20 alphanumerical characters-->
             <label for="lastname">Last Name:</label><br>
             <input class="alphanumerical20" type="text" id="lastname" name="lastname" placeholder="Last Name" 
-            pattern="^[a-zA-Z]{1,20}$" required><br>
+            pattern="^[a-zA-Z]{1,20}$"><br>
             <!--Max 20 alphanumerical characters-->
             <label for="dob">Date Of Birth:</label><br>
-            <input type="date" id="dob" name="dob" placeholder="dd/mm/yyyy" required>
+            <input type="date" id="dob" name="dob" placeholder="dd/mm/yyyy">
             <!--dd/mm/yyyy regex format-->
             <!--Gender fieldset-->
             <fieldset>
                 <!--Gender radio fieldset-->
             <legend>&nbsp;Gender:&nbsp;</legend>
 
-                <input type="radio" name="gender" value="female" id="female" required>
+                <input type="radio" name="gender" value="female" id="female">
                         <label for="female">Female</label><br>
 
                 <input type="radio" name="gender" value="male" id="male">
@@ -82,22 +82,22 @@
             <!--Contact details-->
             <label for="address">Street Address:</label><br>
             <input class="char40" type="text" id="address" name="address" placeholder="Max 40 characters" 
-            pattern="^{1,40}$" required><br>
+            pattern="^{1,40}$"><br>
             <!--Max 40 characters-->  
 
             <label for="suburb">Suburb/Town:</label><br>
             <input class="char40" type="text" id="suburb" name="suburb" placeholder="Max 40 characters" 
-            pattern="^{1,40}$" required><br>  
+            pattern="^{1,40}$"><br>  
             <!--Max 40 characters-->
 
             <label for="postcode">Postcode:</label><br>
             <input type="text" id="postcode" name="postcode" placeholder="0000" 
-            pattern="^[0-9]{4}$" required><br>  
+            pattern="^[0-9]{4}$"><br>  
             <!--4 digits 0-9-->
             <!--Add functionality for people applying from other countries?-->
             <label for="state">State:</label>
             <br>
-            <select name="state" id="state" required size = 1>
+            <select name="state" id="state" size = 1>
                 <option value="">--Please select your state--</option>
                 <option value="VIC">Victoria</option>
                 <option value="NSW">New South Wales</option>
@@ -111,12 +111,12 @@
             <br>
 
             <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" placeholder="example@example.com" required><br>  
+            <input type="email" id="email" name="email" placeholder="example@example.com"><br>  
             <!--Email input type-->
 
             <label for="phone">Phone number:</label><br>
             <input type="text" id="phone" name="phone" placeholder="8-12 digits" 
-            pattern="^[0-9]{8,12}$" required><br>  
+            pattern="^[0-9]{8,12}$"><br>  
             <!--8-12 digits-->
             <!-- add functionaility for international phone numbers? -->
 
