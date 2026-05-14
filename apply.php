@@ -22,21 +22,41 @@
     $page_title = "Apply"; // Set the specific title for this page
     include 'header.inc'; 
     ?>
-
+   
     <div id="applydiv">
     <h2>Apply for a position at InfraWatch</h2>
 
     <form action="process_eoi.php" method="post">
         <!--Reference number fieldset-->
         <fieldset>
-            <?php
-            // Check if the job_ref is set in the URL
-            $job_ref_value = isset($_GET['job_ref']) ? $_GET['job_ref'] : '';
-            ?>
         <legend>&nbsp;Reference Number:&nbsp;</legend>
             <label for="reference">Reference number:</label><br>
-            <input type="text" id="reference" name="reference" placeholder="Job Reference Number" value="<?php echo htmlspecialchars($job_ref_value); ?>"
-            pattern="^[a-zA-Z1-9]{1,20}$"><br> 
+
+             <?php 
+             $job_ref_value = isset($_GET['job_ref']) ? $_GET['job_ref'] : '';
+             require_once("settings.php"); 
+            $conn = mysqli_connect($host, $username, $password, $database );
+            if(!$conn) {
+                echo "<p>Database connection failed: ". mysqli_connect_error()."</p>";
+            }
+            else{
+                $sql = "SELECT job_ref, job_title FROM jobs";
+                $result = mysqli_query($conn, $sql);
+                if($result && mysqli_num_rows($result) > 0){
+                    echo "<select name='jobref' id='jobref' size = 1>";
+                    echo "<option value=''>--Please select your job--</option>";
+                while($row = mysqli_fetch_assoc($result)){
+                        $job_ref = htmlspecialchars($row['job_ref']);
+                        $job_title = htmlspecialchars($row['job_title']);
+                        $value = $job_ref . "-" . $job_title;
+                        $selected = ($job_ref == $job_ref_value) ? "selected='selected'" : "";
+                        echo "<option value='$value' $selected>$job_title ($job_ref)</option>";
+                    };
+                    echo "</select>";
+                };
+            mysqli_close($conn);
+            };
+            ?>
             <!--Exactly 5 alphanumeric characters-->
         </fieldset>
         <!--Personal details fieldset-->
@@ -97,6 +117,7 @@
             <!--Add functionality for people applying from other countries?-->
             <label for="state">State:</label>
             <br>
+            
             <select name="state" id="state" size = 1>
                 <option value="">--Please select your state--</option>
                 <option value="VIC">Victoria</option>
