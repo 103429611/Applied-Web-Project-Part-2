@@ -43,14 +43,14 @@
                 $sql = "SELECT job_ref, job_title FROM jobs";
                 $result = mysqli_query($conn, $sql);
                 if($result && mysqli_num_rows($result) > 0){
-                    echo "<select name='jobref' id='jobref' size = 1>";
+                    echo "<select name='reference' id='reference' size = 1>";
                     echo "<option value=''>--Please select your job--</option>";
                 while($row = mysqli_fetch_assoc($result)){
                         $job_ref = htmlspecialchars($row['job_ref']);
                         $job_title = htmlspecialchars($row['job_title']);
                         $value = $job_ref . "-" . $job_title;
                         $selected = ($job_ref == $job_ref_value) ? "selected='selected'" : "";
-                        echo "<option value='$value' $selected>$job_title ($job_ref)</option>";
+                        echo "<option value='$job_ref' $selected>($job_ref) - $job_title</option>";
                     };
                     echo "</select>";
                 };
