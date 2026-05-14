@@ -34,13 +34,13 @@
             background-color: #606060;
         }
         #groupphoto {
+            border: 3px double #ffff00;
             float: left;
             max-height: 64vw;
             max-width: auto;
             width: 64vw;
             height: auto;
-            margin:auto;    
-            padding: 1em;
+            margin: 1em;
         }
     </style>
 </head>
@@ -51,7 +51,7 @@
     include 'header.inc'; 
 ?>
 
-    <h3>We are...</h3>
+    <h1>We are...</h1>
     <ul>
         <li>Group 2</li>
         <ul>
@@ -59,31 +59,47 @@
         </ul>
     </ul>
 
-    <h3>Contributions of the team:</h3>
+    <h2>Contributions of the team:</h2>
     <dl> <!--Definition list-->
         <dt>Alex: <span class="studentid">106340883</span></dt>
-        <dd>CSS files, apply.html</dd>
-        <dd>"We must choose between champagne for a few or drinking water for all"</dd>
-        <dd>"Il faut choisir entre le champagne pour quelques-uns ou l'eau potable pour tous"</dd>
+        <dd>
+        <ul>
+            <li>CSS files, apply.html</li>
+            <li>"We must choose between champagne for a few or drinking water for all"</li>
+            <li>"Il faut choisir entre le champagne pour quelques-uns ou l'eau potable pour tous"</li>
+        </ul>
+        <dd>
         <dt>Ashley: <span class="studentid">103429611</span></dt>
-        <dd>CSS files, jobs.html, submitting assignment</dd>
-        <dd>"I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it."</dd>
-        <dd>"「私は難しい仕事には怠け者を選ぶ。なぜなら、怠け者は楽な方法を見つけるからだ。"</dd>
+        <dd>
+        <ul>
+            <li>CSS files, jobs.html, submitting assignment</li>
+            <li>"I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it."</li>
+            <li>"「私は難しい仕事には怠け者を選ぶ。なぜなら、怠け者は楽な方法を見つけるからだ。"</li>
+        </ul>
+        <dd>
         <dt>William: <span class="studentid">105913190</span></dt>
-        <dd>CSS files, about.html</dd>
-        <dd>"Good morning China. Now I have ice cream"</dd>
-        <dd>"早上好中国.现在我有冰淇淋"</dd>
+        <dd>
+        <ul>
+            <li>CSS files, about.html</li>
+            <li>"Good morning China. Now I have ice cream"</li>
+            <li>"早上好中国.现在我有冰淇淋"</li>
+        </ul>
+        <dd>
         <dt>Noor: <span class="studentid">106216609</span></dt>
-        <dd>CSS files, index.html</dd>
-        <dd>"It is very difficult to keep a lamp lit in the middle of the storm"</dd>
-        <dd>"بہت مشکل ہے، آندھیوں میں چراغ جلانا"</dd>
+        <dd>
+        <ul>
+            <li>CSS files, index.html</li>
+            <li>"It is very difficult to keep a lamp lit in the middle of the storm"</li>
+            <li>"بہت مشکل ہے، آندھیوں میں چراغ جلانا"</li>
+        </ul>
+        <dd>
     </dl>
     
     <figure> <!--For group photo-->
         <img src = "images/groupphoto.png" alt="Group Photo" width="400" height="300" id="groupphoto">
         <figcaption>
             <table>
-                <th>Fun Facts about the team:</th> <!--For table-->
+                <caption>Fun Facts about the team:</caption>
                 <tr>
                     <td>
                         Alex: My hometown is in Gold Coast, Australia
