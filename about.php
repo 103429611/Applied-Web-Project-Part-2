@@ -46,10 +46,8 @@
 </head>
 
 <body>
-<<?php
-    $page_title = "About"; // Set the specific title for this page
-    include 'header.inc'; 
-?>
+<?php $page_title = "About"; // Set the specific title for this page
+    include 'header.inc'; ?>
 
     <h1>We are...</h1>
     <ul>
