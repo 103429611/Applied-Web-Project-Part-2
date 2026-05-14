@@ -51,7 +51,7 @@
             pattern="^[a-zA-Z]{1,20}$"><br>
             <!--Max 20 alphanumerical characters-->
             <label for="dob">Date Of Birth:</label><br>
-            <input type="date" id="dob" name="dob" placeholder="dd/mm/yyyy">
+            <input type="date" id="dob" name="dob">
             <!--dd/mm/yyyy regex format-->
             <!--Gender fieldset-->
             <fieldset>
@@ -67,13 +67,13 @@
                 <input type="radio" name="gender" value="non-binary" id="non-binary">
                         <label for="non-binary">Non-Binary</label><br>
 
-                <input type="radio" name="gender" value="null" id="null">
-                <label for="null">Prefer not to say</label><br>
+                <input type="radio" name="gender" value="prefer_not_to_say" id="prefer_not_to_say">
+                <label for="prefer_not_to_say">Prefer not to say</label><br>
                 <!-- Custom Gender field, probably needs more work to post the value of the
                 text box instead of posting seperately, probably needs JS but that isn't allowed -->
                 <input type="radio" name="gender" value="other" id="other">
                 <label for="other">Other:</label><br>
-                <input type="text" name="custom-gender" id="custom" placeholder="Please specify:">
+                <input type="text" name="other_gender" id="other_gender" placeholder="Please specify:">
             </fieldset>
         </fieldset>
         <!--Contact details fieldset-->
@@ -126,34 +126,34 @@
 
         <legend>&nbsp;Skills / Qualifications:&nbsp;</legend>
                 
-            <input type="checkbox" name="skills[]" value="ai" id="ai">
+            <input type="checkbox" name="skills[]" value="AI infrustructure" id="ai">
             <label for="ai">A stong and up to date understanding of AI infrustructure</label><br>
 
-            <input type="checkbox" name="skills[]" value="leadership" id="leadership">
+            <input type="checkbox" name="skills[]" value="3 Years of Senior Leadership" id="leadership">
             <label for="leadership">3 Years of Senior Leadership</label><br>
 
-            <input type="checkbox" name="skills[]" value="attitude" id="attitude">
+            <input type="checkbox" name="skills[]" value="A can do attitude" id="attitude">
             <label for="attitude">A can do attitude that is able to work around a dynamic team enviroment</label><br>
 
-            <input type="checkbox" name="skills[]" value="licence" id="licence">
+            <input type="checkbox" name="skills[]" value="valid driving license" id="licence">
             <label for="licence">A current and valid driving license</label><br>
 
-            <input type="checkbox" name="skills[]" value="car" id="car">
+            <input type="checkbox" name="skills[]" value="A working vehicle" id="car">
             <label for="car">A working vehicle capable of carrying light equipment such as cameras</label><br>
 
-            <input type="checkbox" name="skills[]" value="public role" id="public">
+            <input type="checkbox" name="skills[]" value="3 years in a public facing role" id="public">
             <label for="public">3 years in a public facing role</label><br>
 
-            <input type="checkbox" name="skills[]" value="customer service" id="customer">
+            <input type="checkbox" name="skills[]" value="Customer service management" id="customer">
             <label for="customer">Customer service management</label><br>
 
-            <input type="checkbox" name="skills[]" value="adobe suite" id="adobe">
+            <input type="checkbox" name="skills[]" value="Adobe suite experience" id="adobe">
             <label for="adobe">Adobe suite experience</label><br>
            
-            <input type="checkbox" name="skills[]" value="office 365" id="office">
+            <input type="checkbox" name="skills[]" value="Office 365 experience" id="office">
             <label for="office">Office 365 experience</label><br>
 
-            <input type="checkbox" name="skills[]" value="coffee & jokes" id="coffee">
+            <input type="checkbox" name="skills[]" value="A taste for good jokes and coffee" id="coffee">
             <label for="coffee">A taste for good jokes and coffee</label><br>
             <br>
             <label for="other-skills">Other Skills:</label>
