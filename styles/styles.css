@@ -116,11 +116,7 @@ aside {
     box-shadow: 10px 10px 5px #aaaaaa;
 }
 
-#job_descriptions{
-    float: left;
-    width: 70%;
 
-}
 /*Aligns text for Job Descriptions to the center*/
 #job_descriptions h3{
     text-align: center;

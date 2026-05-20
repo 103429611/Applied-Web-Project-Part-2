@@ -1,43 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- TO-DO  -->
-
-<!-- Convert relevant HTML pages to PHP and modularise shared components using PHP includes. -->
-<!-- Implement database connectivity and manage application data using server‑side scripting. -->
 <!-- Apply server‑side validation, sanitisation, and security practices for all user input. -->
-<!-- Dynamically render job listings, form submissions, and database content.-->
-<!-- Implement authentication and controlled access for management functionality.-->
+
 <!-- Demonstrate your implemented features during the Week 11 interview with your tutor.-->
 <!-- Participate in the Week 12 group presentation and complete the Peer & Self Evaluation individually.-->
-<!--Move shared HTML (header, nav, footer, etc.,...) into .inc files (e.g., header.inc, nav.inc, footer.inc). -->
-<!-- Convert pages to .php and include these files.
--->
-<!-- Create settings.php with host, user, password, and database name. Note: Do not set any password
--->
-<!-- Use it for all DB connections on the local server.
--->
-<!-- Jobs table and jobs.php
-Create a jobs table. Fields and data types of jobs table must match with the project 1 jobs page. 
-Render job descriptions and details (everything) dynamically with PHP in jobs.php page 
-(or other pages if relevant). Jobs page should have a search bar that retrieves data from the database.-->
-<!-- -->
-<!-- -->
-<!-- -->
-
-
-<!-- DONE  -->
-
-<!-- -->
-<!-- -->
-<!-- -->
-<!-- -->
-<!-- -->
-<!-- -->
-<!-- -->
-
-
-
 
 
 <head> <!-- Head containing nesseccary info on Character set, Description, Keywords and Author -->
@@ -96,7 +62,7 @@ Render job descriptions and details (everything) dynamically with PHP in jobs.ph
     </aside>
 
     <section id = "job_search" >
-        <form action="./job_search_result.php" method="GET">D0DAE2c4c4
+        <form action="job_search_result.php" method="GET">
         <label for="job_ref">Search Job Ref No.</label>
         <input type="search" id="job_ref" name="job_ref" placeholder="Search Job Ref No." required>
         <button type="submit">Search</button>
