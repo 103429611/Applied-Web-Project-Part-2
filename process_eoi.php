@@ -89,10 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Step 5: Show errors or insert data into database
     if (!empty($errors)) {
         // Display all error messages
-        foreach ($errors as $error) {
-            echo "<p style='color:red;'>" . htmlspecialchars($error) . "</p>";
-        }
-        echo "<p><strong>Please go back and fix the errors.</strong></p>";
+        $queryString = http_build_query(['errors' => $errors, 'old' => $_POST]);
+        header("Location: ./apply.php?" . $queryString);
+        
     }
     else{ 
         $sql = "INSERT INTO eoi (reference, first_name, last_name, dob, gender, address, suburb, postcode, state, email_address, phone_number, skills, other_skills)

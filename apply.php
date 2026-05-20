@@ -33,6 +33,7 @@
             <label for="reference">Reference number:</label><br>
 
              <?php 
+            $errors = $_GET['errors'] ?? [];
              $job_ref_value = isset($_GET['job_ref']) ? $_GET['job_ref'] : '';
              require_once("settings.php"); 
             $conn = mysqli_connect($host, $username, $password, $database );
@@ -192,10 +193,20 @@
 
         <!--Book and reset form-->
         <input class="book" type="submit" value="Submit form">
-        <input class="book" type="reset" value="Reset form">    
+        <input class="book" type="reset" value="Reset form">
+        
 
 
     </form>
+    <?php
+    if (isset($errors)){
+         foreach ($errors as $error) {
+            echo "<p style='color:red;'>" . htmlspecialchars($error) . "</p>";
+         }
+        echo "<p><strong>Please go back and fix the errors.</strong></p>";
+    }
+
+        ?>
 </div>
     <?php include 'footer.inc'; ?>
 </body>
