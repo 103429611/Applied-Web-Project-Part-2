@@ -59,38 +59,41 @@
 
     <h2>Contributions of the team:</h2>
     <dl> <!--Definition list-->
-        <dt>Alex: <span class="studentid">106340883</span></dt>
-        <dd>
-        <ul>
-            <li>CSS files, apply.html</li>
-            <li>"We must choose between champagne for a few or drinking water for all"</li>
-            <li>"Il faut choisir entre le champagne pour quelques-uns ou l'eau potable pour tous"</li>
-        </ul>
-        <dd>
-        <dt>Ashley: <span class="studentid">103429611</span></dt>
-        <dd>
-        <ul>
-            <li>CSS files, jobs.html, submitting assignment</li>
-            <li>"I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it."</li>
-            <li>"「私は難しい仕事には怠け者を選ぶ。なぜなら、怠け者は楽な方法を見つけるからだ。"</li>
-        </ul>
-        <dd>
-        <dt>William: <span class="studentid">105913190</span></dt>
-        <dd>
-        <ul>
-            <li>CSS files, about.html</li>
-            <li>"Good morning China. Now I have ice cream"</li>
-            <li>"早上好中国.现在我有冰淇淋"</li>
-        </ul>
-        <dd>
-        <dt>Noor: <span class="studentid">106216609</span></dt>
-        <dd>
-        <ul>
-            <li>CSS files, index.html</li>
-            <li>"It is very difficult to keep a lamp lit in the middle of the storm"</li>
-            <li>"بہت مشکل ہے، آندھیوں میں چراغ جلانا"</li>
-        </ul>
-        <dd>
+
+        <?php
+        require_once("settings.php");
+            $conn = mysqli_connect($host, $username, $password, $database);
+        if(!$conn) {
+            echo "<p> Database connection failed". mysqli_connect_error(). "</p>";
+        }
+        else {
+            $sql = "SELECT firstname, lastname, studentid, part_1_contributions, part_2_contributions, quote, quote_in_different_lang FROM contributions";
+            $result = mysqli_query($conn, $sql);
+            if($result && mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_assoc($result)){
+                    $firstname = htmlspecialchars($row['firstname']);
+                    $lastname = htmlspecialchars($row['lastname']);
+                    $studentid = htmlspecialchars($row['studentid']);
+                    $part_1_contributions = htmlspecialchars($row['part_1_contributions']);
+                    $part_2_contributions = htmlspecialchars($row['part_2_contributions']);
+                    $quote = htmlspecialchars($row['quote']);
+                    $quote_in_different_lang = htmlspecialchars($row['quote_in_different_lang']);
+                    echo "
+                        <dt>$firstname $lastname: <span class=\"studentid\">$studentid</span></dt>
+                        <dd>
+                        <ul>
+                            <li>Part 1 Contributions: $part_1_contributions</li>
+                            <li>Part 2 Contributions: $part_2_contributions</li>
+                            <li>\"$quote\"</li>
+                            <li>\"$quote_in_different_lang\"</li>
+                        </ul>
+                    <dd>
+                    ";
+                };
+            };
+            mysqli_close($conn);
+        }
+        ?>
     </dl>
     
     <figure> <!--For group photo-->

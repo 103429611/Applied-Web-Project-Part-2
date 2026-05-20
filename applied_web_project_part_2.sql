@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: database:3306
--- Generation Time: May 14, 2026 at 06:08 AM
--- Server version: 8.4.9
--- PHP Version: 8.3.31
+-- Host: 127.0.0.1
+-- Generation Time: May 20, 2026 at 09:40 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,13 +31,13 @@ USE `applied web project part 2`;
 
 DROP TABLE IF EXISTS `contributions`;
 CREATE TABLE `contributions` (
-  `firstname` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `lastname` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `studentid` int NOT NULL,
-  `part_1_contributions` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `part_2_contributions` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `quote` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `quote_in_different_lang` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `firstname` varchar(20) NOT NULL,
+  `lastname` varchar(20) NOT NULL,
+  `studentid` int(11) NOT NULL,
+  `part_1_contributions` varchar(30) NOT NULL,
+  `part_2_contributions` varchar(30) DEFAULT NULL,
+  `quote` varchar(200) NOT NULL,
+  `quote_in_different_lang` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -45,10 +45,10 @@ CREATE TABLE `contributions` (
 --
 
 INSERT INTO `contributions` (`firstname`, `lastname`, `studentid`, `part_1_contributions`, `part_2_contributions`, `quote`, `quote_in_different_lang`) VALUES
-('Ashley', 'Butler', 103429611, 'CSS files, jobs.html, submitti', '', 'I choose a lazy person to do a hard job. Because a', '「私は難しい仕事には怠け者を選ぶ。なぜなら、怠け者は楽な方法を見つけるからだ。'),
+('Ashley', 'Butler', 103429611, 'CSS files, jobs.html, submitti', '', 'I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it.', '「私は難しい仕事には怠け者を選ぶ。なぜなら、怠け者は楽な方法を見つけるからだ。'),
 ('William', 'Lloyd', 105913190, 'CSS files, about.html', '', 'Good morning China. Now I have ice cream', '早上好中国.现在我有冰淇淋'),
-('Noor', 'Fatima Nisar', 106216609, 'CSS files, index.html', '', 'It is very difficult to keep a lamp lit in the mid', 'بہت مشکل ہے، آندھیوں میں چراغ جلانا'),
-('Alex', 'Stanford', 106340883, 'CSS files, apply.html', '', 'We must choose between champagne for a few or drin', 'Il faut choisir entre le champagne pour quelques-u');
+('Noor', 'Fatima Nisar', 106216609, 'CSS files, index.html', '', 'It is very difficult to keep a lamp lit in the middle of the storm', 'بہت مشکل ہے، آندھیوں میں چراغ جلانا'),
+('Alex', 'Stanford', 106340883, 'CSS files, apply.html', '', 'We must choose between champagne for a few or drinking water for all', 'Il faut choisir entre le champagne pour quelques-uns ou l\'eau potable pour tous');
 
 -- --------------------------------------------------------
 
@@ -58,21 +58,21 @@ INSERT INTO `contributions` (`firstname`, `lastname`, `studentid`, `part_1_contr
 
 DROP TABLE IF EXISTS `eoi`;
 CREATE TABLE `eoi` (
-  `eoi number` int NOT NULL,
-  `reference` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `first_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `last_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `eoi number` int(11) NOT NULL,
+  `reference` varchar(5) NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(20) NOT NULL,
   `dob` date NOT NULL,
-  `gender` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `address` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `suburb` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `postcode` int NOT NULL,
-  `state` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `email_address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `phone_number` int NOT NULL,
-  `skills` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `other_skills` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `gender` varchar(20) NOT NULL,
+  `address` varchar(40) NOT NULL,
+  `suburb` varchar(40) NOT NULL,
+  `postcode` int(11) NOT NULL,
+  `state` varchar(10) NOT NULL,
+  `email_address` varchar(100) NOT NULL,
+  `phone_number` int(11) NOT NULL,
+  `skills` varchar(200) NOT NULL,
+  `other_skills` text NOT NULL,
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -83,13 +83,13 @@ CREATE TABLE `eoi` (
 
 DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE `jobs` (
-  `job_ref` int NOT NULL,
-  `job_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `salary` int NOT NULL,
-  `reports_to` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` text COLLATE utf8mb4_general_ci NOT NULL,
-  `essential_requirements` text COLLATE utf8mb4_general_ci NOT NULL,
-  `pref_requirements` text COLLATE utf8mb4_general_ci NOT NULL
+  `job_ref` int(11) NOT NULL,
+  `job_title` varchar(255) DEFAULT NULL,
+  `salary` int(11) NOT NULL,
+  `reports_to` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `essential_requirements` text NOT NULL,
+  `pref_requirements` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -140,13 +140,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `eoi`
 --
 ALTER TABLE `eoi`
-  MODIFY `eoi number` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `eoi number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `job_ref` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10012;
+  MODIFY `job_ref` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10012;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
