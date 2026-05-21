@@ -20,7 +20,10 @@
 <body>
 <?php
     $page_title = "Apply"; // Set the specific title for this page
-    include 'header.inc'; 
+    include 'header.inc';
+    session_start();
+    $errors = $_SESSION["errors"];
+    $id = $_SESSION["id"]
     ?>
    
     <div id="applydiv">
@@ -33,7 +36,6 @@
             <label for="reference">Reference number:</label><br>
 
              <?php 
-            $errors = $_GET['errors'] ?? [];
              $job_ref_value = isset($_GET['job_ref']) ? $_GET['job_ref'] : '';
              require_once("settings.php"); 
             $conn = mysqli_connect($host, $username, $password, $database );
@@ -64,15 +66,16 @@
         <fieldset>
         <legend>&nbsp;Personal details:&nbsp;</legend>
             <label for="firstname">First Name:</label><br>                          
-            <input class="alphanumerical20" type="text" id="firstname" name="firstname" placeholder="First Name"
-            pattern="^[a-zA-Z]{1,20}$"><br> 
+            <input class="alphanumerical20" type="text" id="firstname" name="firstname"
+            value="<?php echo isset($_SESSION['firstname']) ? htmlspecialchars($_SESSION['firstname']) : ''; ?>"><br> 
             <!--Max 20 alphanumerical characters-->
             <label for="lastname">Last Name:</label><br>
-            <input class="alphanumerical20" type="text" id="lastname" name="lastname" placeholder="Last Name" 
-            pattern="^[a-zA-Z]{1,20}$"><br>
+            <input class="alphanumerical20" type="text" id="lastname" name="lastname"
+            value="<?php echo isset($_SESSION['lastname']) ? htmlspecialchars($_SESSION['lastname']) : ''; ?>"><br>
             <!--Max 20 alphanumerical characters-->
             <label for="dob">Date Of Birth:</label><br>
-            <input type="date" id="dob" name="dob">
+            <input type="date" id="dob" name="dob"
+            value="<?php echo isset($_SESSION['dob']) ? htmlspecialchars($_SESSION['dob']) : ''; ?>">>
             <!--dd/mm/yyyy regex format-->
             <!--Gender fieldset-->
             <fieldset>
@@ -198,6 +201,7 @@
 
 
     </form>
+    <div id="results">
     <?php
     if (isset($errors)){
          foreach ($errors as $error) {
@@ -205,8 +209,12 @@
          }
         echo "<p><strong>Please go back and fix the errors.</strong></p>";
     }
+    if (isset($id)){
+        echo "<p style='color:green;'><strong>Sumbitted, your EOI number is: " . htmlspecialchars($id) ."</strong></p>";
 
+    }
         ?>
+    </div>
 </div>
     <?php include 'footer.inc'; ?>
 </body>

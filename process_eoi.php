@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     header("Location: ./apply.php");;
     die('Direct access not permitted');
@@ -89,15 +90,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Step 5: Show errors or insert data into database
     if (!empty($errors)) {
         // Display all error messages
-        $queryString = http_build_query(['errors' => $errors, 'old' => $_POST]);
-        header("Location: ./apply.php?" . $queryString);
+       // $queryString = http_build_query(['errors' => $errors, 'old' => $_POST]);
+       // header("Location: ./apply.php?" . $queryString);
+        
+        $_SESSION["errors"] = $errors;
+        $_SESSION["id"] = null;
+
+        $_SESSION["reference"] = $reference;
+        $_SESSION["firstname"] = $firstname;
+        $_SESSION["lastname"] = $lastname;
+        $_SESSION["dob"] = $dob;
+        $_SESSION["gender"] = $gender;
+        $_SESSION["address"] = $address;
+        $_SESSION["suburb"] = $suburb;
+        $_SESSION["postcode"] = $postcode;
+        $_SESSION["state"] = $state;
+        $_SESSION["email"] = $email;
+        $_SESSION["phone"] = $phone;
+        $_SESSION["other_skills"] = $other_skills;
+
+
+        header("Location: ./apply.php?#results");
         
     }
     else{ 
         $sql = "INSERT INTO eoi (reference, first_name, last_name, dob, gender, address, suburb, postcode, state, email_address, phone_number, skills, other_skills)
             VALUES ('$reference','$firstname','$lastname','$dob','$gender','$address','$suburb','$postcode','$state','$email','$phone', '$skills', '$other_skills')";
         if (mysqli_query($conn , $sql)){
-            echo "<h2> Sumbitted!, your EOI number is: " .mysqli_insert_id($conn). "</h2>";
+            $_SESSION["id"] = htmlspecialchars(mysqli_insert_id($conn));
+            $_SESSION["errors"] = null;
+            header("Location: ./apply.php?#results");
         }else{
             echo "<p style='color:red'> Error:".mysqli_error($conn)."</p>";
         }
