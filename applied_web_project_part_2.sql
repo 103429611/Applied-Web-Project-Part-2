@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 20, 2026 at 09:40 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: database:3306
+-- Generation Time: May 22, 2026 at 04:01 AM
+-- Server version: 8.4.9
+-- PHP Version: 8.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,13 +31,13 @@ USE `applied web project part 2`;
 
 DROP TABLE IF EXISTS `contributions`;
 CREATE TABLE `contributions` (
-  `firstname` varchar(20) NOT NULL,
-  `lastname` varchar(20) NOT NULL,
-  `studentid` int(11) NOT NULL,
-  `part_1_contributions` varchar(30) NOT NULL,
-  `part_2_contributions` varchar(30) DEFAULT NULL,
-  `quote` varchar(200) NOT NULL,
-  `quote_in_different_lang` varchar(200) NOT NULL
+  `firstname` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `lastname` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `studentid` int NOT NULL,
+  `part_1_contributions` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `part_2_contributions` varchar(30) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `quote` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `quote_in_different_lang` varchar(200) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -58,22 +58,29 @@ INSERT INTO `contributions` (`firstname`, `lastname`, `studentid`, `part_1_contr
 
 DROP TABLE IF EXISTS `eoi`;
 CREATE TABLE `eoi` (
-  `eoi number` int(11) NOT NULL,
-  `reference` varchar(5) NOT NULL,
-  `first_name` varchar(20) NOT NULL,
-  `last_name` varchar(20) NOT NULL,
+  `eoi number` int NOT NULL,
+  `reference` varchar(5) COLLATE utf8mb4_general_ci NOT NULL,
+  `first_name` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `last_name` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `dob` date NOT NULL,
-  `gender` varchar(20) NOT NULL,
-  `address` varchar(40) NOT NULL,
-  `suburb` varchar(40) NOT NULL,
-  `postcode` int(11) NOT NULL,
-  `state` varchar(10) NOT NULL,
-  `email_address` varchar(100) NOT NULL,
-  `phone_number` int(11) NOT NULL,
-  `skills` varchar(200) NOT NULL,
-  `other_skills` text NOT NULL,
-  `status` varchar(20) NOT NULL
+  `gender` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `suburb` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `postcode` int NOT NULL,
+  `state` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `email_address` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `phone_number` int NOT NULL,
+  `skills` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `other_skills` text COLLATE utf8mb4_general_ci NOT NULL,
+  `status` enum('New','Current','Final') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'New'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `eoi`
+--
+
+INSERT INTO `eoi` (`eoi number`, `reference`, `first_name`, `last_name`, `dob`, `gender`, `address`, `suburb`, `postcode`, `state`, `email_address`, `phone_number`, `skills`, `other_skills`, `status`) VALUES
+(20, '10007', 'asggsas', 'kdsnbdsug', '1111-11-11', 'mike', 'oufsahosauf', 'vdsljds', 1111, 'NT', 'dskh@emaik.com', 92719216, 'A can do attitude', '', 'New');
 
 -- --------------------------------------------------------
 
@@ -83,13 +90,13 @@ CREATE TABLE `eoi` (
 
 DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE `jobs` (
-  `job_ref` int(11) NOT NULL,
-  `job_title` varchar(255) DEFAULT NULL,
-  `salary` int(11) NOT NULL,
-  `reports_to` varchar(50) NOT NULL,
-  `description` text NOT NULL,
-  `essential_requirements` text NOT NULL,
-  `pref_requirements` text NOT NULL
+  `job_ref` int NOT NULL,
+  `job_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `salary` int NOT NULL,
+  `reports_to` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci NOT NULL,
+  `essential_requirements` text COLLATE utf8mb4_general_ci NOT NULL,
+  `pref_requirements` text COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -140,13 +147,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `eoi`
 --
 ALTER TABLE `eoi`
-  MODIFY `eoi number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `eoi number` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `job_ref` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10012;
+  MODIFY `job_ref` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10012;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
