@@ -1,3 +1,12 @@
+<?php 
+    session_start();
+    if (isset($_SESSION["errors"])){
+    $errors = $_SESSION["errors"];
+    }
+    if (isset($_SESSION["id"])){
+    $id = $_SESSION["id"];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,9 +30,6 @@
 <?php
     $page_title = "Apply"; // Set the specific title for this page
     include 'header.inc';
-    session_start();
-    $errors = $_SESSION["errors"];
-    $id = $_SESSION["id"]
     ?>
    
     <div id="applydiv">
@@ -37,6 +43,9 @@
 
              <?php 
              $job_ref_value = isset($_GET['job_ref']) ? $_GET['job_ref'] : '';
+             if (isset($_SESSION['reference'])){
+             $job_ref_value = $_SESSION['reference'];
+             }
              require_once("settings.php"); 
             $conn = mysqli_connect($host, $username, $password, $database );
             if(!$conn) {
@@ -75,29 +84,65 @@
             <!--Max 20 alphanumerical characters-->
             <label for="dob">Date Of Birth:</label><br>
             <input type="date" id="dob" name="dob"
-            value="<?php echo isset($_SESSION['dob']) ? htmlspecialchars($_SESSION['dob']) : ''; ?>">>
+            value="<?php echo isset($_SESSION['dob']) ? htmlspecialchars($_SESSION['dob']) : ''; ?>">
             <!--dd/mm/yyyy regex format-->
             <!--Gender fieldset-->
             <fieldset>
                 <!--Gender radio fieldset-->
             <legend>&nbsp;Gender:&nbsp;</legend>
 
-                <input type="radio" name="gender" value="female" id="female">
+                <input type="radio" name="gender" value="female" id="female"
+                checked = <?php if (isset($_SESSION['gender'])){
+                    if (preg_match("/female/", $_SESSION['gender'])){
+                    echo "checked";
+                    }
+                }
+                ?>>
                         <label for="female">Female</label><br>
 
-                <input type="radio" name="gender" value="male" id="male">
+                <input type="radio" name="gender" value="male" id="male"
+                checked = <?php if (isset($_SESSION['gender'])){
+                    if (preg_match("/male/", $_SESSION['gender'])){
+                    echo "checked";
+                    }
+                }
+                ?>>
                         <label for="male">Male</label><br>
 
-                <input type="radio" name="gender" value="non-binary" id="non-binary">
+                <input type="radio" name="gender" value="non-binary" id="non-binary"
+                <?php if (isset($_SESSION['gender'])){
+                    if (preg_match("/non-binary/", $_SESSION['gender'])){
+                    echo "checked";
+                    }
+                }
+                ?>>
                         <label for="non-binary">Non-Binary</label><br>
 
-                <input type="radio" name="gender" value="prefer_not_to_say" id="prefer_not_to_say">
+                <input type="radio" name="gender" value="prefer_not_to_say" id="prefer_not_to_say"
+                <?php if (isset($_SESSION['gender'])){
+                    if (preg_match("/prefer_not_to_say/", $_SESSION['gender'])){
+                    echo "checked";
+                    }
+                }
+                ?>>
                 <label for="prefer_not_to_say">Prefer not to say</label><br>
                 <!-- Custom Gender field, probably needs more work to post the value of the
                 text box instead of posting seperately, probably needs JS but that isn't allowed -->
-                <input type="radio" name="gender" value="other" id="other">
+                <input type="radio" name="gender" value="other" id="other"
+                <?php if (isset($_SESSION['gender'])){
+                    if (!preg_match("/female|male|non-binary|prefer_not_to_say/", $_SESSION['gender'])){
+                    echo "checked";
+                    }
+                }
+                ?>>
                 <label for="other">Other:</label><br>
-                <input type="text" name="other_gender" id="other_gender" placeholder="Please specify:">
+                <input type="text" name="other_gender" id="other_gender" placeholder="Please specify:"
+                value = <?php if (isset($_SESSION['gender'])){
+                    if (!preg_match("/female|male|non-binary|prefer_not_to_say/", $_SESSION['gender'])){
+                    echo htmlspecialchars($_SESSION['gender']);
+                    }
+                }
+                ?>>
             </fieldset>
         </fieldset>
         <!--Contact details fieldset-->
@@ -106,17 +151,17 @@
             <!--Contact details-->
             <label for="address">Street Address:</label><br>
             <input class="char40" type="text" id="address" name="address" placeholder="Max 40 characters" 
-            pattern="^{1,40}$"><br>
+            value="<?php echo isset($_SESSION['address']) ? htmlspecialchars($_SESSION['address']) : ''; ?>"><br>
             <!--Max 40 characters-->  
 
             <label for="suburb">Suburb/Town:</label><br>
             <input class="char40" type="text" id="suburb" name="suburb" placeholder="Max 40 characters" 
-            pattern="^{1,40}$"><br>  
+            value="<?php echo isset($_SESSION['suburb']) ? htmlspecialchars($_SESSION['suburb']) : ''; ?>"><br>  
             <!--Max 40 characters-->
 
             <label for="postcode">Postcode:</label><br>
             <input type="text" id="postcode" name="postcode" placeholder="0000" 
-            pattern="^[0-9]{4}$"><br>  
+            value="<?php echo isset($_SESSION['postcode']) ? htmlspecialchars($_SESSION['postcode']) : ''; ?>"><br>  
             <!--4 digits 0-9-->
             <!--Add functionality for people applying from other countries?-->
             <label for="state">State:</label>
@@ -124,24 +169,49 @@
             
             <select name="state" id="state" size = 1>
                 <option value="">--Please select your state--</option>
-                <option value="VIC">Victoria</option>
-                <option value="NSW">New South Wales</option>
-                <option value="QLD">Queensland</option>
-                <option value="NT">Nothern Territory</option>
-                <option value="WA">Western Australia</option>
-                <option value="SA">South Australia</option>
-                <option value="TAS">Tasmania</option>
-                <option value="ACT">Australian Capital Territory</option>
+                <option value="VIC" <?php if (isset($_SESSION['state']) && preg_match("/VIC/", $_SESSION['state'])){
+                    echo "selected";
+                }?>
+                checked = "checked" >Victoria</option>
+                <option value="NSW"<?php if (isset($_SESSION['state']) && preg_match("/NSW/", $_SESSION['state'])){
+                    echo "selected";
+                }?>
+                >New South Wales</option>
+                <option value="QLD" <?php if (isset($_SESSION['state']) && preg_match("/QLD/", $_SESSION['state'])){
+                    echo "selected";
+                }?>
+                >Queensland</option>
+                <option value="NT"<?php if (isset($_SESSION['state']) && preg_match("/NT/", $_SESSION['state'])){
+                    echo "selected";
+                }?>
+                >Nothern Territory</option>
+                <option value="WA"<?php if (isset($_SESSION['state']) && preg_match("/WA/", $_SESSION['state'])){
+                    echo "selected";
+                }?>
+                >Western Australia</option>
+                <option value="SA"<?php if (isset($_SESSION['state']) && preg_match("/SA/", $_SESSION['state'])){
+                    echo "selected";
+                }?>
+                >South Australia</option>
+                <option value="TAS"<?php if (isset($_SESSION['state']) && preg_match("/TAS/", $_SESSION['state'])){
+                    echo "selected";
+                }?>
+                >Tasmania</option>
+                <option value="ACT"<?php if (isset($_SESSION['state']) && preg_match("/ACT/", $_SESSION['state'])){
+                    echo "selected";
+                }?>
+                >Australian Capital Territory</option>
             </select>
             <br>
 
             <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" placeholder="example@example.com"><br>  
+            <input type="email" id="email" name="email" placeholder="example@example.com"
+            value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>"><br>  
             <!--Email input type-->
 
             <label for="phone">Phone number:</label><br>
             <input type="text" id="phone" name="phone" placeholder="8-12 digits" 
-            pattern="^[0-9]{8,12}$"><br>  
+            value="<?php echo isset($_SESSION['phone']) ? htmlspecialchars($_SESSION['phone']) : ''; ?>"><br>  
             <!--8-12 digits-->
             <!-- add functionaility for international phone numbers? -->
 
@@ -151,41 +221,71 @@
 
         <legend>&nbsp;Skills / Qualifications:&nbsp;</legend>
                 
-            <input type="checkbox" name="skills[]" value="AI infrustructure" id="ai">
+            <input type="checkbox" name="skills[]" value="AI infrustructure" id="ai"
+            <?php if (isset($_SESSION['skills']) && preg_match("/AI infrustructure/", $_SESSION['skills'])){
+                    echo "checked";
+                }?>>
             <label for="ai">A stong and up to date understanding of AI infrustructure</label><br>
 
-            <input type="checkbox" name="skills[]" value="3 Years of Senior Leadership" id="leadership">
+            <input type="checkbox" name="skills[]" value="3 Years of Senior Leadership" id="leadership"
+            <?php if (isset($_SESSION['skills']) && preg_match("/3 Years of Senior Leadership/", $_SESSION['skills'])){
+                    echo "checked";
+                }?>>
             <label for="leadership">3 Years of Senior Leadership</label><br>
 
-            <input type="checkbox" name="skills[]" value="A can do attitude" id="attitude">
+            <input type="checkbox" name="skills[]" value="A can do attitude" id="attitude"
+            <?php if (isset($_SESSION['skills']) && preg_match("/A can do attitude/", $_SESSION['skills'])){
+                    echo "checked";
+                }?>>
             <label for="attitude">A can do attitude that is able to work around a dynamic team enviroment</label><br>
 
-            <input type="checkbox" name="skills[]" value="valid driving license" id="licence">
+            <input type="checkbox" name="skills[]" value="valid driving license" id="licence"
+            <?php if (isset($_SESSION['skills']) && preg_match("/valid driving license/", $_SESSION['skills'])){
+                    echo "checked";
+                }?>>
             <label for="licence">A current and valid driving license</label><br>
 
-            <input type="checkbox" name="skills[]" value="A working vehicle" id="car">
+            <input type="checkbox" name="skills[]" value="A working vehicle" id="car"
+            <?php if (isset($_SESSION['skills']) && preg_match("/A working vehicle/", $_SESSION['skills'])){
+                    echo "checked";
+                }?>>
             <label for="car">A working vehicle capable of carrying light equipment such as cameras</label><br>
 
-            <input type="checkbox" name="skills[]" value="3 years in a public facing role" id="public">
+            <input type="checkbox" name="skills[]" value="3 years in a public facing role" id="public"
+            <?php if (isset($_SESSION['skills']) && preg_match("/3 years in a public facing role/", $_SESSION['skills'])){
+                    echo "checked";
+                }?>>
             <label for="public">3 years in a public facing role</label><br>
 
-            <input type="checkbox" name="skills[]" value="Customer service management" id="customer">
+            <input type="checkbox" name="skills[]" value="Customer service management" id="customer"
+            <?php if (isset($_SESSION['skills']) && preg_match("/Customer service management/", $_SESSION['skills'])){
+                    echo "checked";
+                }?>>
             <label for="customer">Customer service management</label><br>
 
-            <input type="checkbox" name="skills[]" value="Adobe suite experience" id="adobe">
+            <input type="checkbox" name="skills[]" value="Adobe suite experience" id="adobe"
+            <?php if (isset($_SESSION['skills']) && preg_match("/Adobe suite experience/", $_SESSION['skills'])){
+                    echo "checked";
+                }?>>
             <label for="adobe">Adobe suite experience</label><br>
            
-            <input type="checkbox" name="skills[]" value="Office 365 experience" id="office">
+            <input type="checkbox" name="skills[]" value="Office 365 experience" id="office"
+            <?php if (isset($_SESSION['skills']) && preg_match("/Office 365 experience/", $_SESSION['skills'])){
+                    echo "checked";
+                }?>>
             <label for="office">Office 365 experience</label><br>
 
-            <input type="checkbox" name="skills[]" value="A taste for good jokes and coffee" id="coffee">
+            <input type="checkbox" name="skills[]" value="A taste for good jokes and coffee" id="coffee"
+            <?php if (isset($_SESSION['skills']) && preg_match("/A taste for good jokes and coffee/", $_SESSION['skills'])){
+                    echo "checked";
+                }?>>
             <label for="coffee">A taste for good jokes and coffee</label><br>
             <br>
             <label for="other-skills">Other Skills:</label>
             <br>
             <textarea name="other_skills" id="other_skills" cols="50" rows="5"
-            placeholder="Enter other applicable skills here"
-            style="resize:vertical; width: 98%;"></textarea>
+            style="resize:vertical; width: 98%;"
+            ><?php echo isset($_SESSION['other_skills']) ? htmlspecialchars($_SESSION['other_skills']) : ''; ?></textarea>
             <!--^ inline CSS-->
             <br>
 
@@ -196,7 +296,7 @@
 
         <!--Book and reset form-->
         <input class="book" type="submit" value="Submit form">
-        <input class="book" type="reset" value="Reset form">
+        <input class="book" type="reset" value="Reset form" onClick="window.location.reload()">
         
 
 
@@ -216,6 +316,8 @@
         ?>
     </div>
 </div>
-    <?php include 'footer.inc'; ?>
+    <?php include 'footer.inc'; 
+    session_unset();      // Unset all session variables
+    session_destroy();    // Destroy the session?>
 </body>
 </html>

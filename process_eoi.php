@@ -107,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["state"] = $state;
         $_SESSION["email"] = $email;
         $_SESSION["phone"] = $phone;
+        $_SESSION["skills"] = $skills;
         $_SESSION["other_skills"] = $other_skills;
 
 
