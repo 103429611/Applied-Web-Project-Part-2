@@ -97,5 +97,6 @@ mysqli_close($conn);
     <button type="button">Apply Now!</button>
     </div>
 </a>
+    <?php include 'footer.inc'; ?>
 </body>
 </html>
