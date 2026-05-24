@@ -13,21 +13,14 @@
     <meta name="description" content="Job listings page">
     <meta name="keywords" content="HTML, Doctype, Head, Body, Meta, Paragraph, Headings">
     <meta name="author" content="Ashley Butler">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
     <!-- CSS linking file -->
     <link rel="stylesheet" href="styles/styles.css">
     <!-- embeded CSS adds a box around both jobs individually, and then changes the color of the text of the headings and content -->
     <style>
-        #job_descriptions {
-            border: 4px solid purple;
-            border-radius: 14px;
-            margin: 1em;
-            margin-bottom: 4em;
-            padding: 1em;
-            background-color: #0b3b51 ;
-            width: 60%;
-            box-shadow: 10px 10px 5px #aaaaaa;
-        }
+
 
         #job_descriptions h4 {color: #EBC0AD;}
         #job_descriptions p {color: #FFD6F8;}
@@ -49,7 +42,7 @@
     <h2 style="font-size: 2em; color: plum;">Current Open Jobs</h2>
 
     <!-- aside, main adjacent content, in this case showing employee reviews  -->
-    <aside>
+    <aside class="aside">
         <h3>Notes from our current team</h3>
         <h4>Mark - Accounting</h4>
         <p>I love working here at Infrawatch, the pay is great, the team are awesome and the management let you work at your pace</p>

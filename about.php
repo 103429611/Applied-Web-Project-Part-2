@@ -7,6 +7,8 @@
     <meta name="description" content="About page">
     <meta name="keywords" content="HTML, Doctype, Head, Body, Meta, Paragraph, Headings">
     <meta name="author" content="William Lloyd">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
     <title>InfraWatch - About</title> 
     <link rel="stylesheet" href="styles/styles.css"> <!-- Gets the styles.css data for the webpage -->

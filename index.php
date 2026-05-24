@@ -18,6 +18,7 @@
     <meta name="keywords" content="smart city, infrastructure, AI cameras, government, monitoring"> <!-- Keywords will help in SEO -->
     <meta name="author" content="Noor Fatima Nisar"> <!-- Taking credit of my work hehe -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>InfraWatch - Home</title> 
     <link rel="stylesheet" href="styles/styles.css"> 
     

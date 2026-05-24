@@ -16,6 +16,7 @@ description: styles across all pages
 /* Universal adjustable font size for all pages for responsive design */
 
 /*changed defaults for text across the whole page*/
+
 *{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1vw;
@@ -34,18 +35,6 @@ header {
     margin:0.5em ;
     padding:0.5em ;
     background-color: #111920;
-
-}
-
-/*text of current job openeings on job page changed to green*/
-#Current_job_openings li {
-    color:greenyellow;
-    font-family: sans-serif, Arial, Helvetica;
-    margin: 1em;
-}
-/*when hovering over a job title change to coral color*/
-#Current_job_openings li:hover {
-    color:coral;
 }
 
 /*visited and unvisited links will remail greenyellow regardless of visited state*/
@@ -105,6 +94,28 @@ body {
 /*--------------------------------------------------------*/
  /* #region Ashley Section */
 
+
+/*text of current job openeings on job page changed to green*/
+#Current_job_openings li {
+    color:greenyellow;
+    font-family: sans-serif, Arial, Helvetica;
+    margin: 1em;
+}
+/*when hovering over a job title change to coral color*/
+#Current_job_openings li:hover {
+    color:coral;
+}
+
+#job_descriptions {
+    border: 4px solid purple;
+    border-radius: 14px;
+    margin: 1em;
+    margin-bottom: 4em;
+    padding: 1em;
+    background-color: #0b3b51 ;
+    width: 60%;
+    box-shadow: 10px 10px 5px #aaaaaa;
+} 
 aside {
     float: right;
     border: 4px solid purple;
@@ -116,11 +127,22 @@ aside {
     box-shadow: 10px 10px 5px #aaaaaa;
 }
 
+.job_entry {
+    border: 4px solid purple;
+    border-radius: 14px;
+    margin: 1em;
+    margin-bottom: 4em;
+    padding: 1em;
+    background-color: #0b3b51 ;
+    width: 80%;
+    box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+
+
 
 /*Aligns text for Job Descriptions to the center*/
-#job_descriptions h3{
-    text-align: center;
-}
+
 
 
 /* #endregion Ashley Section */
@@ -153,6 +175,7 @@ fieldset{
     border-radius: 1em;
     width: 42em;
 }
+
 #applydiv h2 { 
     margin-left: auto;
     margin-right: auto;
@@ -160,7 +183,6 @@ fieldset{
     font-size: 2em;
     padding: .25em;
 }
-
 
 /* Book class */
 .book{
@@ -171,6 +193,7 @@ fieldset{
     background-color: #111920;
     border-radius: .5em;
 }
+
 /* Start form input widths section */
 input{
     font-size: 1em;
@@ -211,16 +234,6 @@ main section {
     clip: rect(0,0,0,0);
     white-space: nowrap;
 }
-
-/* removes default spacing from all elements for consistency */
-/* commented out by Ashley due to this box of text removing margings and padding on all text site wide and effecting layouts created by other students*/
-/*
-* { 
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-*/
 
 /* layout container for the main intro area of the page, background graphic is in the embedded CSS in HTML. */
 .hero-section {
@@ -348,7 +361,7 @@ tr:hover td {
     color: greenyellow;
     border: 1px solid greenyellow;
     border-radius: 8px;
-    font-size: 1vw;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.25s, color 0.25s;
 }
@@ -464,5 +477,58 @@ footer p {
         box-sizing: border-box;
         }
     }
+
+    
 /* #endregion Noor Section */
-/*--------------------------------------------------------*/
+/* section added by Ashley to actually fix the screen width and mobile responsiveness issues */
+
+@media screen and (max-width: 800px) {
+    aside {
+        float: none;
+        border: 4px solid purple;
+        border-radius: 14px;
+        margin:0;
+        margin-bottom: 4em;
+        padding: 1em;
+        box-shadow: 0 0 0 #aaaaaa;
+        width: 90%;
+    }
+
+    #job_descriptions {
+        border: 4px solid purple;
+        border-radius: 14px;
+        margin: 0;
+        margin-bottom: 4em;
+        padding: 1em;
+        background-color: #0b3b51 ;
+        width: 90%;
+        box-shadow: 0 0 0 #aaaaaa;
+    }
+
+    .job_entry{ 
+        width: 80%;
+        font-size: 1rem;
+    }
+
+    body {
+        width: 90%;
+        font-size: 1rem;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    *{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+    }
+
+    #applydiv {
+        width:90%;
+    }
+
+    #logo {
+        float:none;
+        max-height: 30vw;
+        width: auto;
+    }
+}
