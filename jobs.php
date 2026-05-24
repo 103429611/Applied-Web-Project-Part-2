@@ -62,10 +62,12 @@
     </aside>
 
     <section id = "job_search" >
+        <div class="search-container">
         <form action="job_search_result.php" method="GET">
         <label for="job_ref">Search Job Ref No.</label>
         <input type="search" id="job_ref" name="job_ref" placeholder="Search Job Ref No." required>
         <button type="submit">Search</button>
+        </div>
 </form>
     </section>
 

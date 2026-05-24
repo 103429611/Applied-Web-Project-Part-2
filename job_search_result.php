@@ -40,7 +40,9 @@
     ?>
 
 <a href="jobs.php">
+    <div class="search-container">
     <button>Return To Job Listings</button>
+    </div>
 </a>
 <?php
 
@@ -98,7 +100,9 @@ mysqli_close($conn);
 ?>
 
 <a href="apply.php?job_ref=<?php echo $job_ref; ?>">
+    <div class="search-container">
     <button type="button">Apply Now!</button>
+    </div>
 </a>
 </body>
 </html>
