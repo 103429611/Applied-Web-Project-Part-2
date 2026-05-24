@@ -140,6 +140,18 @@ mysqli_free_result($result);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InfraWatch – Manage EOIs</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <style>
+    .manage-container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+    
+    .manager-bar { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        margin-bottom: 1.5rem;
+    }
+
+    .table-scroll { overflow-x: auto; }
+</style>
 </head>
 <body>
 
