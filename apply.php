@@ -24,13 +24,13 @@
             text-align:left;
         }
     </style>
-
-    </head>
-<body>
 <?php
     $page_title = "Apply"; // Set the specific title for this page
     include 'header.inc';
     ?>
+    </head>
+<body>
+
    
     <div id="applydiv">
     <h2>Apply for a position at InfraWatch</h2>
@@ -92,18 +92,18 @@
             <legend>&nbsp;Gender:&nbsp;</legend>
 
                 <input type="radio" name="gender" value="female" id="female"
-                checked = <?php if (isset($_SESSION['gender'])){
+                <?php if (isset($_SESSION['gender'])){
                     if (preg_match("/female/", $_SESSION['gender'])){
-                    echo "checked";
+                    echo "checked = checked";
                     }
                 }
                 ?>>
                         <label for="female">Female</label><br>
 
                 <input type="radio" name="gender" value="male" id="male"
-                checked = <?php if (isset($_SESSION['gender'])){
+               <?php if (isset($_SESSION['gender'])){
                     if (preg_match("/male/", $_SESSION['gender'])){
-                    echo "checked";
+                    echo " checked = checked";
                     }
                 }
                 ?>>
@@ -112,7 +112,7 @@
                 <input type="radio" name="gender" value="non-binary" id="non-binary"
                 <?php if (isset($_SESSION['gender'])){
                     if (preg_match("/non-binary/", $_SESSION['gender'])){
-                    echo "checked";
+                    echo " checked = checked";
                     }
                 }
                 ?>>
@@ -121,7 +121,7 @@
                 <input type="radio" name="gender" value="prefer_not_to_say" id="prefer_not_to_say"
                 <?php if (isset($_SESSION['gender'])){
                     if (preg_match("/prefer_not_to_say/", $_SESSION['gender'])){
-                    echo "checked";
+                    echo " checked = checked";
                     }
                 }
                 ?>>
@@ -131,7 +131,7 @@
                 <input type="radio" name="gender" value="other" id="other"
                 <?php if (isset($_SESSION['gender'])){
                     if (!preg_match("/female|male|non-binary|prefer_not_to_say/", $_SESSION['gender'])){
-                    echo "checked";
+                    echo "checked = checked";
                     }
                 }
                 ?>>

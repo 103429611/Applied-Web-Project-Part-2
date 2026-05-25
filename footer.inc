@@ -7,3 +7,4 @@
     </p>
     <p style="font-size: 0.75vw; color: #C4C4C4; margin-top: 0.5em;">© 2025 InfraWatch. All rights reserved.</p>
 </footer>
+</div>

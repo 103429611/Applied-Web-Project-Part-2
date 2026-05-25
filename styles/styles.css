@@ -46,18 +46,7 @@ a:hover {
     color: coral;
 }
 
-/* header class for text and content */
-.header {
-    min-height: 2vw;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    align-content: center;
-    margin: 0;
-    padding: 0;
-}
+
 
 /* Nav links for hover behaviour */
 #about:hover, #apply:hover, #index:hover, #jobs:hover {
@@ -84,9 +73,8 @@ a:hover {
 body {
     background-color: #0e1318;
     color: white;
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
+    width: 100%;
+    margin-right:10%
 }
 
 
@@ -154,6 +142,93 @@ aside {
 /*--------------------------------------------------------*/
 /* Added by Alex for Apply page */
 /* #region Alex Section */
+
+.page_content{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-grow:1;
+    margin-right:5%;
+}
+
+.hamburger-btn {
+    display: flex;
+    flex-grow: 0;
+    cursor: pointer;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+    width:8em;
+}
+
+.hamburger-btn span {
+    align-content:center;
+    flex-direction: column;
+    flex-grow: 0;
+    height: .25em;
+    width: 2em;
+    background-color: #333;
+}
+
+/* Hide menu by default */
+.menu-items {
+    flex-grow:0;
+    display: none;
+    list-style: none;
+    padding: .25em;
+    line-height:1.5em;
+    text-align: center;
+}
+#menu_text{
+    flex-grow: 0;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+/* Toggle visibility instantly when checked */
+#menu-toggle:checked ~ .menu-items {
+    display: flex;
+    flex-direction: column;
+    line-height: .25em;
+}
+
+.main_header{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width:100%;
+    align-items: flex-start;
+}
+/* header class for text and content */
+.header{
+    display:flex;
+    flex-grow:1;
+    margin: 0;
+    padding: 0;
+    min-height: 2vw;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.header_image{
+    display:flex;
+    flex-grow:1;
+    min-width: 0;
+    flex-grow: 1;
+    gap:1vw;
+    align-items: center;
+
+}
+
+
+
+
+/*---------------------------------*/
 
 
 fieldset{
@@ -510,6 +585,13 @@ footer p {
 /* section added by Ashley to actually fix the screen width and mobile responsiveness issues */
 
 @media screen and (max-width: 800px) {
+.main_header{
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-grow:0;
+}
     aside {
         float: none;
         border: 4px solid purple;
@@ -554,7 +636,6 @@ footer p {
     }
 
     #logo {
-        float:none;
         max-height: 30vw;
         width: auto;
     }
