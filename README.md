@@ -39,9 +39,9 @@ InfraWatch is a dynamic recruitment website built for a simulated Smart City Inf
 | Name | Student ID | Professional Title | Part 1 Responsibility | Part 2 Responsibility |
 | :--- | :--- | :--- | :--- | :--- |
 | **Ashley** | 103429611 | Founder & Creative Director | Brand Strategy & `jobs.html` | `jobs.php`, jobs table & search bar |
-| **Noor** | 106216609 | Visual Identity Lead | Logo Architecture & `index.html` | `index.php`, PHP includes & settings |
+| **Noor** | 106216609 | Visual Identity Lead | Logo Architecture & `index.html` | `manage.php` & login page |
 | **Alex** | 106340883 | Organizational Strategist | Workforce Design & `apply.html` | `apply.php`, `process_eoi.php` & EOI table |
-| **William**| 105913190 | Content Lead | Media Documentation & `about.html` | `about.php`, about table & `manage.php` |
+| **William** | 105913190 | Content Lead | Media Documentation & `about.html` | `about.php` & about table |
  
 > **Note:** Each member was responsible for the full structure, content, and styling of their assigned pages across both parts of the project.
  
