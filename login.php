@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             justify-content: center;
         }
         .login-box {
-            background: #fff;
+            background: #0e1318;
             border: 1px solid #d0dde8;
             border-radius: 10px;
             padding: 2.5rem 3rem;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2026 at 06:53 AM
+-- Generation Time: May 25, 2026 at 03:10 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,7 @@ INSERT INTO `contributions` (`firstname`, `lastname`, `studentid`, `part_1_contr
 ('Ashley', 'Butler', 103429611, 'CSS files, jobs.html, submitting final ZIP file', 'Turning pages into php, adding header.inc, footer.inc, fixing jobs page, added jobs into MySQL DB, added a jobs search, linked job search to apply page, made whole site mobile responsive, overall project manager, kept tabs on team mates progress and ensured tasks were getting done on time, uploading ZIP of project to canvas', 'I choose a lazy person to do a hard job. Because a lazy person will find an easy way to do it.', '「私は難しい仕事には怠け者を選ぶ。なぜなら、怠け者は楽な方法を見つけるからだ。'),
 ('William', 'Lloyd', 105913190, 'CSS files, about.html', '', 'Good morning China. Now I have ice cream', '早上好中国.现在我有冰淇淋'),
 ('Noor', 'Fatima Nisar', 106216609, 'CSS files, index.html', '', 'It is very difficult to keep a lamp lit in the middle of the storm', 'بہت مشکل ہے، آندھیوں میں چراغ جلانا'),
-('Alex', 'Stanford', 106340883, 'CSS files, apply.html', '', 'We must choose between champagne for a few or drinking water for all', 'Il faut choisir entre le champagne pour quelques-uns ou l\'eau potable pour tous');
+('Alex', 'Stanford', 106340883, 'CSS files, apply.html', '', 'We must choose between champagne for a few or drinking water for all', 'Il faut choisir entre le champagne pour quelques-uns ou leau potable pour tous');
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ INSERT INTO `contributions` (`firstname`, `lastname`, `studentid`, `part_1_contr
 
 DROP TABLE IF EXISTS `eoi`;
 CREATE TABLE `eoi` (
-  `eoi number` int(11) NOT NULL,
+  `eoi_number` int(11) NOT NULL,
   `reference` varchar(5) NOT NULL,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
@@ -72,6 +72,7 @@ CREATE TABLE `eoi` (
   `phone_number` int(11) NOT NULL,
   `skills` varchar(200) NOT NULL,
   `other_skills` text NOT NULL,
+  `submitted_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
   `status` enum('New','Current','Final') NOT NULL DEFAULT 'New'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -79,9 +80,65 @@ CREATE TABLE `eoi` (
 -- Dumping data for table `eoi`
 --
 
-INSERT INTO `eoi` (`eoi number`, `reference`, `first_name`, `last_name`, `dob`, `gender`, `address`, `suburb`, `postcode`, `state`, `email_address`, `phone_number`, `skills`, `other_skills`, `status`) VALUES
-(20, '10007', 'asggsas', 'kdsnbdsug', '1111-11-11', 'mike', 'oufsahosauf', 'vdsljds', 1111, 'NT', 'dskh@emaik.com', 92719216, 'A can do attitude', '', 'New'),
-(21, '10007', 'Ashley', 'Butler', '2026-05-21', 'female', '1234 fake street', 'nowhere', 3000, 'VIC', 'test@test.com', 12345678, '3 Years of Senior Leadership, Adobe suite experience', 'none', 'New');
+INSERT INTO `eoi` (`eoi_number`, `reference`, `first_name`, `last_name`, `dob`, `gender`, `address`, `suburb`, `postcode`, `state`, `email_address`, `phone_number`, `skills`, `other_skills`, `submitted_at`, `status`) VALUES
+(20, '10001', 'asggsas', 'kdsnbdsug', '1111-11-11', 'mike', 'oufsahosauf', 'vdsljds', 1111, 'NT', 'dskh@emaik.com', 92719216, 'A can do attitude', '', '0000-00-00 00:00:00.000000', 'New'),
+(21, '10002', 'Ashley', 'Butler', '2026-05-21', 'female', '1234 fake street', 'nowhere', 3000, 'VIC', 'test@test.com', 12345678, '3 Years of Senior Leadership, Adobe suite experience', 'none', '0000-00-00 00:00:00.000000', 'New'),
+-- Mario
+(22, '10003', 'Mario', 'Mario', '2026-05-25', 'male', '112 Mushroom Way', 'Toad Town', 3000, 'VIC', 'mario@plumbing.com', 48392015, 'Expert in infrastructure maintenance, plumbing, high-jump athletics', 'none', '2026-05-25 09:14:22.104938', 'New'),
+(23, '10004', 'Peach', 'Toadstool', '2026-05-25', 'female', '1 Castle Grounds', 'Toad Town', 3000, 'VIC', 'peach@mushroomkingdom.gov', 72649103, '15+ Years of Royal Diplomacy, crisis management, baking expertise', 'none', '2026-05-25 09:18:45.332104', 'New'),
+
+-- The Last of Us
+(24, '10005', 'Joel', 'Miller', '2026-05-25', 'male', '45 QZ Border Road', 'Boston', 2000, 'NSW', 'joel@smugglers.net', 31940582, '20 Years in logistics, asset protection, survival operations', 'none', '2026-05-25 09:22:11.884721', 'New'),
+(25, '10006', 'Ellie', 'Williams', '2026-05-25', 'female', '12 Jackson Colony', 'Jackson', 2000, 'NSW', 'ellie@jacksonrepublic.org', 85039214, 'Sustained field reconnaissance, stealth operations, switchblade proficiency', 'none', '2026-05-25 09:25:34.002913', 'New'),
+
+-- God of War
+(26, '10007', 'Kratos', 'Sparta', '2026-05-25', 'male', '88 Wildwoods Path', 'Midgard', 4000, 'QLD', 'kratos@war.org', 19483025, 'Extensive senior military command, heavy weapons handling, pantheon restructuring', 'none', '2026-05-25 09:31:02.441952', 'New'),
+(27, '10008', 'Atreus', 'Laufeyjarson', '2026-05-25', 'male', '88 Wildwoods Path', 'Midgard', 4000, 'QLD', 'boy@loki.com', 62049581, 'Multilingual translation, archery tracking, giant lore research', 'none', '2026-05-25 09:36:18.115902', 'New'),
+
+-- Spider-Man
+(28, '10009', 'Peter', 'Parker', '2026-05-25', 'male', '20 Ingram Street', 'Queens', 5000, 'SA', 'peter.parker@dailybugle.com', 50392184, 'Professional photojournalism, biophysics research, web-line logistics', 'none', '2026-05-25 09:42:55.603948', 'New'),
+(29, '10010', 'Miles', 'Morales', '2026-05-25', 'male', '104 Brooklyn Blvd', 'Brooklyn', 5000, 'SA', 'miles.m@visionacademy.edu', 29401857, 'Audio engineering, street art design, bio-electric energy management', 'none', '2026-05-25 09:47:12.839401', 'New'),
+
+-- Clair Obscur: Expedition 33
+(30, '10011', 'Gustave', 'Expedition', '2026-05-25', 'male', '33 Paint Track', 'Lumiere', 6000, 'WA', 'gustave@expedition33.org', 74102938, 'Resource management, structural engineering, final-year expedition planning', 'none', '2026-05-25 10:02:04.992814', 'New'),
+(31, '10001', 'Maelle', 'Expedition', '2026-05-25', 'female', '34 Paint Track', 'Lumiere', 6000, 'WA', 'maelle@expedition33.org', 38291045, 'High-velocity fencing, quick-response strategy, artistic composition', 'none', '2026-05-25 10:05:41.123940', 'New'),
+
+-- Control
+(32, '10002', 'Jesse', 'Faden', '2026-05-25', 'female', '33 Broadway', 'The Oldest House', 7000, 'TAS', 'jesse.faden@fbc.gov', 91048237, 'Executive Director oversight, paranatural containment, Service Weapon clearance', 'none', '2026-05-25 10:14:29.551029', 'New'),
+(33, '10003', 'Casper', 'Darling', '2026-05-25', 'male', '404 Research Sector', 'The Oldest House', 7000, 'TAS', 'c.darling@fbc.gov', 54910238, 'Head of Research, HRA development, informational video presentation', 'none', '2026-05-25 10:19:02.384910', 'New'),
+
+-- Red Dead Redemption
+(34, '10004', 'Arthur', 'Morgan', '2026-05-25', 'male', '3 Van der Linde Camp', 'Clemens Point', 8000, 'NT', 'arthur@van-der-linde.com', 83029147, 'Debt collection, heavy transit security, journal illustration, tracking', 'none', '2026-05-25 10:33:14.772948', 'New'),
+(35, '10005', 'John', 'Marston', '2026-05-25', 'male', '1 Beechers Hope', 'Blackwater', 8000, 'NT', 'john@marstonranch.com', 47291038, 'Agricultural management, fence building, long-range tracking operations', 'none', '2026-05-25 10:38:50.002938', 'New'),
+
+-- Grand Theft Auto V
+(36, '10006', 'Michael', 'De Santa', '2026-05-25', 'male', '3671 Rockford Hills Drive', 'Los Santos', 3000, 'VIC', 'michael@mediamanagement.com', 10394827, 'Film production consulting, high-stakes tactical planning, asset acquisition', 'none', '2026-05-25 10:52:18.492019', 'New'),
+(37, '10007', 'Franklin', 'Clinton', '2026-05-25', 'male', '3671 Vinewood Hills', 'Los Santos', 3000, 'VIC', 'franklin@fclintondigital.com', 69302148, 'High-end vehicle repossession, precision stunt driving, boutique agency operations', 'none', '2026-05-25 10:55:33.118240', 'New'),
+(38, '10008', 'Trevor', 'Philips', '2026-05-25', 'male', '1520 Marina Drive', 'Sandy Shores', 3000, 'VIC', 'trevor@tpinternational.com', 25849103, 'CEO of TP Enterprises, aviation transport, aggressive negotiation, corporate restructuring', 'none', '2026-05-25 11:01:05.663921', 'New'),
+
+-- Portal
+(39, '10009', 'Chell', 'Aperture', '2026-05-25', 'female', '01 Test Shaft 09', 'Upper Michigan', 3000, 'VIC', 'chell@aperturescience.com', 48201938, 'Extensive kinetic momentum testing, long-fall boot proficiency, silent problem solving', 'none', '2026-05-25 11:22:14.004921', 'New'),
+(40, '10010', 'Cave', 'Johnson', '2026-05-25', 'male', '88 Shower Curtain Lane', 'Upper Michigan', 3000, 'VIC', 'cave.johnson@aperturescience.com', 73910248, 'Founder & CEO, aggressive entrepreneurial leadership, moon rock acquisition, lemon engineering', 'none', '2026-05-25 11:25:45.312049', 'New'),
+(41, '10011', 'G賴en', 'L蘡er', '2026-05-25', 'female', 'Central AI Chamber', 'Upper Michigan', 3000, 'VIC', 'glados@aperturescience.com', 10492837, 'Facility-wide automated operations, neurotoxin logistics, testing protocol optimization', 'none', '2026-05-25 11:28:02.884710', 'New'),
+
+-- Half-Life
+(42, '10001', 'Gordon', 'Freeman', '2026-05-25', 'male', '14 Anomalous Materials', 'Black Mesa', 2000, 'NSW', 'g.freeman@blackmesa.org', 92014837, 'PhD in Theoretical Physics, hazardous materials handling, anomalous resonance cascade response', 'none', '2026-05-25 11:35:19.112049', 'New'),
+(43, '10002', 'Alyx', 'Vance', '2026-05-25', 'female', '4 White Forest Base', 'City 17', 2000, 'NSW', 'alyx@resistance.net', 38102948, 'Subterranean urban navigation, EMP tool fabrication, mechanical combat drone maintenance', 'none', '2026-05-25 11:39:44.603912', 'New'),
+(44, '10003', 'Wallace', 'Breen', '2026-05-25', 'male', '01 Citadel Apex', 'City 17', 2000, 'NSW', 'administrator@citadel.gov', 84029137, 'Interdimensional public relations, global resource mediation, high-level administrative bureaucracy', 'none', '2026-05-25 11:42:01.229481', 'New'),
+
+-- Assassin's Creed
+(45, '10004', 'Ezio', 'Auditore', '2026-05-25', 'male', '15 Monteriggioni Villa', 'Florence', 4000, 'QLD', 'ezio.auditore@brotherhood.it', 50192847, '20+ Years of regional organizational leadership, stealth asset auditing, parkour structural navigation', 'none', '2026-05-25 11:51:33.992014', 'New'),
+-- The Witcher 3
+(48, '10005', 'Geralt', 'of Rivia', '2026-05-25', 'male', '1 Kaer Morhen Keep', 'The North', 5000, 'SA', 'geralt@kaermorhen.edu', 63920148, 'Apex tracking, wildlife population control, chemical potion preparation, independent security', 'none', '2026-05-25 12:05:44.772019', 'New'),
+(49, '10006', 'Yennefer', 'of Vengerberg', '2026-05-25', 'female', '14 Vengerberg Center', 'Aedirn', 5000, 'SA', 'yennefer@sorceresses.org', 82049137, 'High-level political advisory, macro environmental manipulation, portal logistics, strategic negotiation', 'none', '2026-05-25 12:11:22.003921', 'New'),
+(50, '10007', 'Ciri', 'Cirilla', '2026-05-25', 'female', '1 Royal Palace', 'Vizima', 5000, 'SA', 'ciri@elderblood.net', 19482037, 'Inter-spatial navigation, rapid-response physical combat, tracking, multi-realm diplomacy', 'none', '2026-05-25 12:15:39.441920', 'New'),
+
+-- Fallout (TV Show)
+(51, '10008', 'Lucy', 'MacLean', '2026-05-25', 'female', '33 Overseer Residence', 'Vault 33', 6000, 'WA', 'lucy.maclean@vaulttec.com', 40291384, 'Sub-surface community planning, repair ethics, crisis stabilization, golden-rule mediation', 'none', '2026-05-25 12:22:01.883921', 'New'),
+(52, '10009', 'The', 'Ghoul', '2026-05-25', 'male', '10 Hollywood Blvd', 'The Wasteland', 6000, 'WA', 'cooper.howard@prewarcinema.com', 85930214, '200+ Years field survival, precision marksmanship, bounty acquisition, media relations consulting', 'none', '2026-05-25 12:26:45.104938', 'New'),
+(53, '10010', 'Maximus', 'Brotherhood', '2026-05-25', 'male', '44 Filly Outpost', 'Wasteland West', 6000, 'WA', 'maximus@brotherhoodofsteel.org', 31920485, 'Heavy mechanized armor operations, squire logistics, field reconnaissance, strategic asset defense', 'none', '2026-05-25 12:31:18.552940', 'New'),
+
+(54, '10011', 'Margret', 'Thatcher', '2026-04-29', 'female', 'land of the tea', 'England', 1234, 'VIC', 'primminister@england.co.uk', 12345678, 'AI infrustructure, A working vehicle, Office 365 experience', '', '0000-00-00 00:00:00.000000', 'New');
 
 -- --------------------------------------------------------
 
@@ -118,6 +175,25 @@ INSERT INTO `jobs` (`job_ref`, `job_title`, `salary`, `reports_to`, `description
 (10010, 'Ethical AI Auditor', 145000, 'Public Liaison Lead', 'You will be responsible for the \"Internal Oversight\" of our algorithms. Your job is to stress-test our models for bias (demographic, socioeconomic, or geographic) to ensure our government partners are deploying fair and equitable technology across all neighborhoods.', 'Post-graduate degree in Data Science, Ethics, or Sociology, Experience in algorithmic bias testing, Strong technical writing skills', 'Experience with Explainable AI (XAI) frameworks, A background in social justice or public advocacy, A philosophical mindset with technical execution'),
 (10011, 'Technical Support Specialist (L2)', 68000, 'AI Implementation Lead', 'When a camera goes dark or an AI model starts misidentifying objects, you are the first line of defense. You will provide remote support to field techs, monitor the health of the camera fleet via our internal dashboard, and escalate software bugs to the dev team.', 'Experience in a technical support or helpdesk role, Basic Linux command line skills, Familiarity with API monitoring tools', 'Experience with Docker or containerized environments, Great communication skills over radio/slack, A dedicated \"problem-solver\" personality');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `username` varchar(256) NOT NULL,
+  `password_hash` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `password_hash`) VALUES
+('admin', '$2y$10$xntFkIlteOj/.G1Uu6LNOujV2fActDV.9hc0zIGlq2NVCcjbv22bW');
+
 --
 -- Indexes for dumped tables
 --
@@ -132,13 +208,19 @@ ALTER TABLE `contributions`
 -- Indexes for table `eoi`
 --
 ALTER TABLE `eoi`
-  ADD PRIMARY KEY (`eoi number`);
+  ADD PRIMARY KEY (`eoi_number`);
 
 --
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`job_ref`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -148,7 +230,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `eoi`
 --
 ALTER TABLE `eoi`
-  MODIFY `eoi number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `eoi_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `jobs`

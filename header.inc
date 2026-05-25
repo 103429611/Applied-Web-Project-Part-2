@@ -23,5 +23,6 @@
             <a id="apply" href="apply.php">Apply</a>
             <a id="index" href="index.php">Index</a>
             <a id="jobs" href="jobs.php">Jobs</a>
+            <a id="login" href="login.php">Login</a>
         </nav>
     </header>

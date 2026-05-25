@@ -489,7 +489,7 @@ footer p {
 .inline-form { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; }
 .inline-form label { font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.2rem; color: #ffffff; }
 .inline-form input[type="text"],
-.inline-form select { padding: 0.5rem 0.7rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; background: rgba(255,255,255,0.08); color: #ffffff; }
+.inline-form select { padding: 0.5rem 0.7rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; background: #ffffff; color: #000000; }
 .inline-form button { padding: 0.55rem 1.2rem; background: transparent; color: #90ee90; border: 1px solid #90ee90; border-radius: 5px; cursor: pointer; }
 .inline-form button:hover { background: #90ee90; color: #000; }
 .btn-danger { color: #ff6b6b !important; border-color: #ff6b6b !important; }

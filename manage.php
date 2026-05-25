@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $action_message = "Please enter a job reference to delete.";
     } else {
         // ? placeholder prevents SQL injection
-        $stmt = mysqli_prepare($conn, "DELETE FROM eoi WHERE job_ref = ?");
+        $stmt = mysqli_prepare($conn, "DELETE FROM eoi WHERE reference = ?");
         // 's' = string data type
         mysqli_stmt_bind_param($stmt, 's', $del_ref);
         // send query to the database
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $action_message = "Please enter a valid EOI number and select a status.";
     } else {
         // two ? placeholders for status (string) and EOInumber (integer)
-        $stmt = mysqli_prepare($conn, "UPDATE eoi SET status = ? WHERE EOInumber = ?");
+        $stmt = mysqli_prepare($conn, "UPDATE eoi SET status = ? WHERE eoi_number = ?");
         // 'si' = string then integer (data types for each parameter)
         mysqli_stmt_bind_param($stmt, 'si', $new_status, $eoi_num);
         mysqli_stmt_execute($stmt);
@@ -89,37 +89,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-$allowed_sorts = ['EOInumber', 'lastname', 'firstname', 'job_ref', 'status', 'submitted_at'];
+$allowed_sorts = ['eoi_number', 'first_name', 'last_name', 'reference', 'status', 'submitted_at'];
 
 // $_GET: appends data to URL, good for retrieving/filtering 
-$sort = $_GET['sort'] ?? 'EOInumber';
+$sort = $_GET['sort'] ?? 'eoi_number';
 
 // reset to default if someone tampers with the URL
 if (!in_array($sort, $allowed_sorts)) {
-    $sort = 'EOInumber';
+    $sort = 'eoi_number';
 }
 
-$query = "SELECT EOInumber, job_ref, firstname, lastname, 
-                 email, phone, status, submitted_at 
+$query = "SELECT eoi_number, reference, first_name, last_name, 
+                 email_address, phone_number, status, submitted_at 
           FROM eoi WHERE 1=1";
 
 // filter by job reference (from $_GET superglobal)
 $filter_ref = clean($conn, $_GET['filter_ref'] ?? '');
 if (!empty($filter_ref)) {
     // String concatenation using . to build the query
-    $query .= " AND job_ref = '$filter_ref'";
+    $query .= " AND reference = '$filter_ref'";
 }
 
 // filter by first name - LIKE with % means "contains" (partial match)
 $filter_first = clean($conn, $_GET['filter_first'] ?? '');
 if (!empty($filter_first)) {
-    $query .= " AND firstname LIKE '%$filter_first%'";
+    $query .= " AND first_name LIKE '%$filter_first%'";
 }
 
 // filter by last name
 $filter_last = clean($conn, $_GET['filter_last'] ?? '');
 if (!empty($filter_last)) {
-    $query .= " AND lastname LIKE '%$filter_last%'";
+    $query .= " AND last_name LIKE '%$filter_last%'";
 }
 
 $query .= " ORDER BY $sort ASC";
@@ -127,7 +127,7 @@ $query .= " ORDER BY $sort ASC";
 // send query to the database and store the result set
 $result = mysqli_query($conn, $query);
 
-// MYSQLI_ASSOC means keys are column names e.g. $row['firstname']
+// MYSQLI_ASSOC means keys are column names e.g. $row['first_name']
 $eois = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 mysqli_free_result($result);
@@ -141,7 +141,9 @@ mysqli_free_result($result);
     <title>InfraWatch – Manage EOIs</title>
     <link rel="stylesheet" href="styles/styles.css">
     <style>
-    .manage-container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+
+
+/* commented out by ashley for breaking site wide sizing conventions  .manage-container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; } */
     
     .manager-bar { 
         display: flex; 
@@ -241,12 +243,12 @@ mysqli_free_result($result);
                 <tr>
                     <!-- echo prints the value to the browser as HTML -->
                     <!-- htmlspecialchars() converts < > & to safe HTML entities -->
-                    <td><?php echo htmlspecialchars($row['EOInumber']); ?></td>
-                    <td><?php echo htmlspecialchars($row['job_ref']); ?></td>
-                    <td><?php echo htmlspecialchars($row['firstname']); ?></td>
-                    <td><?php echo htmlspecialchars($row['lastname']); ?></td>
-                    <td><?php echo htmlspecialchars($row['email']); ?></td>
-                    <td><?php echo htmlspecialchars($row['phone']); ?></td>
+                    <td><?php echo htmlspecialchars($row['eoi_number']); ?></td>
+                    <td><?php echo htmlspecialchars($row['reference']); ?></td>
+                    <td><?php echo htmlspecialchars($row['first_name']); ?></td>
+                    <td><?php echo htmlspecialchars($row['last_name']); ?></td>
+                    <td><?php echo htmlspecialchars($row['email_address']); ?></td>
+                    <td><?php echo htmlspecialchars($row['phone_number']); ?></td>
                     <td>
                         <?php
                         // switch compares status against case labels 
