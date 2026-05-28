@@ -136,3 +136,6 @@ All pages have been validated using the W3C services and return no errors or war
 # Academic integrity
 This project was developed for COS10026 at Swinburne University of Technology. Any use of generative AI tools or third-party resources have been acknowledged in accordance with unit policy.
 * **Generative AI:** Canva AI was used to generate an initial logo concept. This concept was then manually redesigned and adapted for use in the final site. All other written content, HTML, CSS, PHP, and SQL was authored by the project team. Gemini was used to understand how to write a ReadMe file and for general tips.
+
+* **Generative AI:**
+Google Gemini was used to create job listings 10002 to 10011, gemini was also used to create the majority of EOI listings and applications that show in the manage.php page and EOI table 
