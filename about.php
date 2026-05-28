@@ -85,6 +85,9 @@
                     <dd>
                     "; //makes a unsorted list based off of the queries
                 };
+            }
+            else {
+                echo "<p>No results to show :(</p>"; // if there is no connection, then say connection failed and print out what went wrong
             };
             mysqli_close($conn); //closes the connection to not cause errors
         }
