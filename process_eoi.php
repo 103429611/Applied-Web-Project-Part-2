@@ -58,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($gender)) $errors[] = "Gender is required.";
     if (preg_match("/other/", $gender)) $gender = $other_gender;
+    if (empty($gender)) $errors[] = "Please enter other gender";
     
 
     if (empty($address)) $errors[] = "Street address name is required.";
@@ -81,10 +82,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($phone)) {
         $errors[] = "Phone number is required.";
-
     } elseif (!preg_match("/^[0-9]{8,12}$/", $phone)){
         $errors[] = "Phone number must be between 8-12 digits.";
+    }else{ 
+        $phone = (int)$phone;
     }
+    
 
 
     // Step 5: Show errors or insert data into database

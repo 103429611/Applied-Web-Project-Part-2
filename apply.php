@@ -75,11 +75,11 @@
         <fieldset>
         <legend>&nbsp;Personal details:&nbsp;</legend>
             <label for="firstname">First Name:</label><br>                          
-            <input class="alphanumerical20" type="text" id="firstname" name="firstname"
+            <input class="alphanumerical20" type="text" id="firstname" name="firstname" placeholder="Max 20 characters"
             value="<?php echo isset($_SESSION['firstname']) ? htmlspecialchars($_SESSION['firstname']) : ''; ?>"><br> 
             <!--Max 20 alphanumerical characters-->
             <label for="lastname">Last Name:</label><br>
-            <input class="alphanumerical20" type="text" id="lastname" name="lastname"
+            <input class="alphanumerical20" type="text" id="lastname" name="lastname" placeholder="Max 20 characters"
             value="<?php echo isset($_SESSION['lastname']) ? htmlspecialchars($_SESSION['lastname']) : ''; ?>"><br>
             <!--Max 20 alphanumerical characters-->
             <label for="dob">Date Of Birth:</label><br>
@@ -137,9 +137,9 @@
                 ?>>
                 <label for="other">Other:</label><br>
                 <input type="text" name="other_gender" id="other_gender" placeholder="Please specify:"
-                value = <?php if (isset($_SESSION['gender'])){
+                <?php if (isset($_SESSION['gender'])){
                     if (!preg_match("/female|male|non-binary|prefer_not_to_say/", $_SESSION['gender'])){
-                    echo htmlspecialchars($_SESSION['gender']);
+                    echo "value =", htmlspecialchars($_SESSION['gender']);
                     }
                 }
                 ?>>
@@ -310,7 +310,7 @@
         echo "<p><strong>Please go back and fix the errors.</strong></p>";
     }
     if (isset($id)){
-        echo "<p style='color:green;'><strong>Sumbitted, your EOI number is: " . htmlspecialchars($id) ."</strong></p>";
+        echo "<p style='color:green;'><strong>Submitted, your EOI number is: " . htmlspecialchars($id) ."</strong></p>";
 
     }
         ?>

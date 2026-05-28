@@ -55,18 +55,18 @@ a:hover {
 
 /* ID logo aligns content and set adjustable */
 #logo {
+    padding:.25vw;
     order: 0;
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
     align-self: center;
-    border-radius: .5em;
+    border-radius: 2vw;
     float: left;
     max-height: 10vw;
     width: 6.5vw;
     height: auto;
     margin:auto;    
-    padding: 0em;
 }
 
 /* background color of site, color of text, give a margin of 10% left and right of page content*/
@@ -148,51 +148,56 @@ aside {
     flex-direction: column;
     flex-wrap: nowrap;
     flex-grow:1;
-    margin-right:5%;
+    padding-right:2vw;
+
 }
 
 .hamburger-btn {
     display: flex;
-    flex-grow: 0;
     cursor: pointer;
-    flex-wrap: nowrap;
-    align-items: center;
-    align-content: center;
-    width:8em;
+}
+.hamburger-btn h1 {
+    font-size: 4rem;
+    margin:0;
+    padding:0;
 }
 
-.hamburger-btn span {
-    align-content:center;
-    flex-direction: column;
-    flex-grow: 0;
-    height: .25em;
-    width: 2em;
-    background-color: #333;
+.sidebar{
+    display: none;
+    border: .1em inset darkgrey;
+    border-radius: 14px;
+    background-color: #111920;
 }
 
-/* Hide menu by default */
+
 .menu-items {
     flex-grow:0;
+    height:0px;
     display: none;
     list-style: none;
-    padding: .25em;
-    line-height:1.5em;
-    text-align: center;
 }
-#menu_text{
-    flex-grow: 0;
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
+.menu-text {
+    font-size:1.5rem;
+
 }
 
-/* Toggle visibility instantly when checked */
-#menu-toggle:checked ~ .menu-items {
+.sidebar:has(#menu-toggle:checked) {
     display: flex;
     flex-direction: column;
-    line-height: .25em;
+
 }
+
+
+#menu-toggle:checked ~ .menu-items {
+    display:flex;
+    align-content: center;
+    flex-grow:1;
+    margin:0px;
+    padding:1em;
+    flex-direction: column;
+    height:100vh;
+}
+
 
 .main_header{
     display: flex;
@@ -204,32 +209,85 @@ aside {
 /* header class for text and content */
 .header{
     display:flex;
-    flex-grow:1;
-    margin: 0;
+    flex-grow:0;
+    gap:2vw;
     padding: 0;
     min-height: 2vw;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
     align-items: center;
+    align-content: center;
     margin: 0;
     padding: 0;
 }
+#desktop_header{
+    display:flex;
+    flex-grow:0;
+    gap:2vw;
+    padding: 0;
+    min-height: 2vw;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    margin: 0;
+    padding: 0;
+}
+
 .header_image{
     display:flex;
     flex-grow:1;
     min-width: 0;
-    flex-grow: 1;
-    gap:1vw;
     align-items: center;
+    justify-content: center;
+    padding:1vw;
+}
+.header_content{
+        padding:1vw;
+        padding-right:4vw;
+}
+
+@media screen and (max-width: 800px) {
+.main_header{
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-grow:0;
+}
+#menu-toggle:checked ~ .menu-items {
+    display:flex;
+    align-content: center;
+    flex-grow:0;
+    margin:0px;
+    padding:4px;
+    flex-direction: column;
+    height: auto;
+
+}
+.hamburger-btn h1 {
+    font-size: 2rem;
+    margin:0;
+    padding:0;
+}
+input[type="text"]{
+    width:50vw;
+}
+.sidebar{
+    display:flex;
+}
+#desktop_header{
+    display:none;
+}
 
 }
 
-
-
-
 /*---------------------------------*/
-
+input[type="text"]{
+    width:30vw;
+}
 
 fieldset{
     border: darkgrey .15em solid;
@@ -269,25 +327,6 @@ fieldset{
     border-radius: .5em;
 }
 
-/* Start form input widths section */
-input{
-    font-size: 1em;
-}
-.alphanumerical20{
-    width: 20em;
-}
-#dob{ 
-    width: 7em;
-}
-.char40{
-    width: 30em
-}
-#postcode{
-    width: 3em;
-}
-#email{
-    width: 20em;
-}
 /* End form input widths section */
 
 /* #endregion Alex Section */
@@ -585,13 +624,7 @@ footer p {
 /* section added by Ashley to actually fix the screen width and mobile responsiveness issues */
 
 @media screen and (max-width: 800px) {
-.main_header{
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    flex-grow:0;
-}
+
     aside {
         float: none;
         border: 4px solid purple;
