@@ -149,7 +149,10 @@ aside {
     flex-wrap: nowrap;
     flex-grow:1;
     padding-right:2vw;
-
+    width: 90%;
+    font-size: 1rem;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .hamburger-btn {
