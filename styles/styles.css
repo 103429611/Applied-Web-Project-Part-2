@@ -594,6 +594,112 @@ footer p {
         box-sizing: border-box;
         }
     }
+
+ /* CSS for the login.php page */
+   
+   /* centers the login column block on screen */
+   .login-page-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 75vh;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+    }
+
+    /* restricts layout width to keep elements neatly stacked vertically */
+    .login-wrapper {
+      width: 100%;
+      max-width: 340px; /* Aligns title perfectly with box edges */
+      display: flex;
+      flex-direction: column;
+     }
+
+    /* custom visual presentation styling for the live information counter */
+    .eoi-badge {
+      background: rgba(26, 109, 188, 0.15);
+      color: #1a6dbc;
+      border: 1px solid rgba(26, 109, 188, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* compact box containers that tightly hug the entry fields */
+    .login-box {
+      background: #0e1318;
+      border: 1px solid rgba(26, 109, 188, 0.35);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      box-sizing: border-box;
+    }
+
+    /* clear vertical stacking rules for text instructions inside form */
+    .login-box form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* clean labeling formatting */
+    .login-box label {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+
+    /* high-contrast dark input panels */
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      color: #ffffff;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    /* active field focus glow helper */
+    .login-box input[type="text"]:focus,
+    .login-box input[type="password"]:focus {
+      outline: none;
+      border-color: #1a6dbc;
+      background: rgba(26, 109, 188, 0.05);
+    }
+
+    /* solid blue interactive execution link block */
+    .login-box input[type="submit"] {
+      width: 100%;
+      padding: 0.85rem;
+      background: #1a6dbc;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* button interactive hover response state */
+    .login-box input[type="submit"]:hover {
+    background: #2280dd;
+    box-shadow: 0 0 15px rgba(26, 109, 188, 0.4);
+    }
+
     /* CSS for the manage.php page */
     .panel {
     background: rgba(255,255,255,0.05);
@@ -601,7 +707,7 @@ footer p {
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-}
+    }
 .panel h3 { color: #90ee90; margin-top: 0; }
 .inline-form { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; }
 .inline-form label { font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.2rem; color: #ffffff; }

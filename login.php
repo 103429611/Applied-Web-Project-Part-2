@@ -1,52 +1,62 @@
 <?php
-/*
- * executes on the web server, client only sees HTML output, authenticates HR managers before granting access to manage.php
+/**
+ * login.php
  */
 
-session_start(); //stores info on the server
+session_start();
 
-// isset() determines if a session variable is set and not null
-// if already logged in, skip the login page entirely using header() redirect
+// isset() checks if session variable exists and is not null, if already logged in, skip login form and go straight to dashboard
 if (isset($_SESSION['manager_logged_in']) && $_SESSION['manager_logged_in'] === true) {
     header('Location: manage.php');
-    exit(); 
+    exit();
 }
 
-require_once 'settings.php'; //for importing credentials
+// require_once loads HUPD credentials exactly once
+require_once 'settings.php';
+
+// get live EOI count to display on login page
+$eoi_count = 0;
+$temp_conn = @mysqli_connect($host, $username, $password, $database);
+if ($temp_conn) {
+    // COUNT() aggregate function counts matching rows
+    $count_result = mysqli_query($temp_conn, "SELECT COUNT(*) as total FROM eoi WHERE status = 'New'");
+    if ($count_result) {
+        $count_row = mysqli_fetch_assoc($count_result);
+        $eoi_count = $count_row['total'];
+        mysqli_free_result($count_result);
+    }
+    mysqli_close($temp_conn);
+}
+
 $error = '';
 
-// $_SERVER["REQUEST_METHOD"] checks how the page was accessed
+// $_SERVER["REQUEST_METHOD"] checks how page was accessed
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // trim() removes leading/trailing spaces from input
-    // strip_tags() removes any HTML tags to prevent XSS attacks
-    // $_POST superglobal receives data sent via POST method (invisible in URL)
-    // ?? '' means "use empty string if this key doesn't exist in $_POST"
+    // server-side sanitisation
     $input_username = trim(strip_tags($_POST['username'] ?? ''));
     $input_password = $_POST['password'] ?? '';
 
-    // empty() returns true if value is "" (empty string), NULL, FALSE, or 0
+    // server-side validation
     if (empty($input_username) || empty($input_password)) {
         $error = 'Please enter both username and password.';
-
     } else {
-        $conn = @mysqli_connect($host, $username, $password, $database); //establish connection
 
-        // check if connection succeeded
+        // establish connection to database
+        $conn = @mysqli_connect($host, $username, $password, $database);
+
         if (!$conn) {
             $error = 'Unable to connect to database. Please try again later.';
         } else {
-            // ? placeholder prevents SQL injection
-            $stmt = mysqli_prepare($conn, 
-                "SELECT password_hash FROM users WHERE username = ? LIMIT 1"
-            );
-            // 's' = string data type for the username parameter
+
+            // prepared statement prevents SQL injection
+            $stmt = mysqli_prepare($conn, "SELECT password_hash FROM users WHERE username = ? LIMIT 1");
             mysqli_stmt_bind_param($stmt, 's', $input_username);
 
-            // send query to the database
+            // send the query to the database
             mysqli_stmt_execute($stmt);
 
-            // bind the result to a variable so we can use it in PHP
+            // bind result to variable so we can use it in PHP
             mysqli_stmt_bind_result($stmt, $stored_hash);
             mysqli_stmt_fetch($stmt);
             mysqli_stmt_close($stmt);
@@ -54,88 +64,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // close connection to free server memory
             mysqli_close($conn);
 
-            // password_verify() checks the plain password against the bcrypt hash
+            // password_verify() checks plain text against stored bcrypt hash
             if ($stored_hash && password_verify($input_password, $stored_hash)) {
 
-                // regenerate session ID to prevent session fixation attacks
+                // regenerate session ID prevents session fixation attacks
                 session_regenerate_id(true);
 
-                // save login state on the server
+                // store login state in session on the server
                 $_SESSION['manager_logged_in'] = true;
-                $_SESSION['manager_username']  = htmlspecialchars($input_username);
-                // htmlspecialchars() converts special characters to HTML entities
+                $_SESSION['manager_username'] = htmlspecialchars($input_username);
 
-                // redirect to the manager dashboard
                 header('Location: manage.php');
                 exit();
 
             } else {
-                // error message on purpose
                 $error = 'Invalid username or password.';
             }
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- viewport meta tag makes the page mobile responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InfraWatch HR Manager login - restricted access">
     <title>InfraWatch – Manager Login</title>
     <link rel="stylesheet" href="styles/styles.css">
     <style>
-        .login-wrapper {
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* ensures the entire page environment background remains dark */
+        body {
+            background-color: #06090c;
+            color: #ffffff;
         }
-        .login-box {
-            background: #0e1318;
-            border: 1px solid #d0dde8;
-            border-radius: 10px;
-            padding: 2.5rem 3rem;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+
+        /* stylises the big text header so it sits perfectly centered on top */
+        .login-wrapper h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #1a6dbc !important;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 0 0 1.5rem 0;
+            text-shadow: 0 0 20px rgba(26,109,188,0.4);
         }
-        .login-box label {
+
+        /* extra cushion spacing for the live pending badge below the title */
+        .login-wrapper .eoi-badge {
             display: block;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-        .login-box input[type="text"],
-        .login-box input[type="password"] {
-            width: 100%;
-            padding: 0.7rem;
-            margin-bottom: 1rem;
-            border: 1px solid #c0cfd8;
-            border-radius: 6px;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-        .login-box input[type="submit"] {
-            width: 100%;
-            padding: 0.8rem;
-            background: #1a3a5c;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-        .login-box input[type="submit"]:hover { background: #1a6dbc; }
-        .error-msg {
-            background: #fdecea;
-            color: #c0392b;
-            border: 1px solid #f5b7b1;
-            border-radius: 6px;
-            padding: 0.7rem;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
@@ -144,36 +124,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'header.inc'; ?>
 
 <main>
-    <div class="login-wrapper">
-        <div class="login-box">
-            <h2>Manager Login</h2>
-            <p>Restricted to authorised HR staff only.</p>
+    <div class="login-page-wrapper">
 
-            <!-- only show error box if $error is not empty -->
-            <?php if (!empty($error)): ?>
-                <div class="error-msg">
-                    <!-- htmlspecialchars() prevents XSS by converting < > to safe HTML entities -->
-                    <?php echo htmlspecialchars($error); ?>
-                </div>
+        <div class="login-wrapper">
+            
+            <h2>Login</h2>
+
+            <?php if ($eoi_count > 0): ?>
+                <span class="eoi-badge">
+                    <?php echo $eoi_count; ?> new application(s) awaiting review
+                </span>
             <?php endif; ?>
 
-            <!-- method="post": sends data in HTTP body, invisible in URL -->
-            <!-- action="login.php": form submits back to this same file -->
-            <form action="login.php" method="post">
+            <div class="login-box">
+                <p style="color:rgba(252, 252, 252, 0.4); font-size:0.8rem; margin-top:0; margin-bottom:1.2rem; text-align:center;">
+                    Restricted to authorised staff only
+                </p>
 
-                <label for="username">Username</label>
-                <!-- type="text" creates a text input box -->
-                <input type="text" id="username" name="username" 
-                       placeholder="Enter username">
+                <?php if (!empty($error)): ?>
+                    <div class="error-msg" role="alert">
+                        <?php echo htmlspecialchars($error); ?>
+                    </div>
+                <?php endif; ?>
 
-                <label for="password">Password</label>
-                <!-- type="password" hides characters as the user types -->
-                <input type="password" id="password" name="password" 
-                       placeholder="Enter password">
+                <form action="login.php" method="post">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username">
 
-                <input type="submit" value="Log In">
-            </form>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password">
+
+                    <input type="submit" value="Log In">
+                </form>
+            </div>
         </div>
+
     </div>
 </main>
 
