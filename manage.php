@@ -172,7 +172,7 @@ mysqli_free_result($result);
 
     <!-- only show the feedback message if it is not empty -->
     <?php if (!empty($action_message)): ?>
-        <div class="success-msg"><?php echo htmlspecialchars($action_message); ?></div>
+        <div class="success-msg" role="status"><?php echo htmlspecialchars($action_message); ?></div>
     <?php endif; ?>
 
     <div class="panel">
@@ -226,6 +226,7 @@ mysqli_free_result($result);
             <p>No EOIs found matching your filters.</p>
         <?php else: ?>
             <table class="eoi-table">
+                <caption class="visually-hidden">EOI Application Results</caption>
                 <tr>
                     <th>EOI #</th>
                     <th>Job Ref</th>
