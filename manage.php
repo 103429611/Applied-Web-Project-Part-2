@@ -99,9 +99,12 @@ if (!in_array($sort, $allowed_sorts)) {
     $sort = 'eoi_number';
 }
 
-$query = "SELECT eoi_number, reference, first_name, last_name, 
-                 email_address, phone_number, status, submitted_at 
-          FROM eoi WHERE 1=1";
+$query = "SELECT e.eoi_number, e.reference, e.first_name, e.last_name, 
+                 e.email_address, e.phone_number, e.status, e.submitted_at,
+                 j.job_title
+          FROM eoi e
+          LEFT JOIN jobs j ON e.reference = j.job_ref
+          WHERE 1=1";
 
 // filter by job reference (from $_GET superglobal)
 $filter_ref = clean($conn, $_GET['filter_ref'] ?? '');
@@ -230,6 +233,7 @@ mysqli_free_result($result);
                 <tr>
                     <th>EOI #</th>
                     <th>Job Ref</th>
+                    <th>Job Title</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -246,6 +250,7 @@ mysqli_free_result($result);
                     <!-- htmlspecialchars() converts < > & to safe HTML entities -->
                     <td><?php echo htmlspecialchars($row['eoi_number']); ?></td>
                     <td><?php echo htmlspecialchars($row['reference']); ?></td>
+                    <td><?php echo htmlspecialchars($row['job_title'] ?? 'Unknown'); ?></td>
                     <td><?php echo htmlspecialchars($row['first_name']); ?></td>
                     <td><?php echo htmlspecialchars($row['last_name']); ?></td>
                     <td><?php echo htmlspecialchars($row['email_address']); ?></td>
