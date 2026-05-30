@@ -61,6 +61,14 @@ InfraWatch is a dynamic recruitment website built for a simulated Smart City Inf
  
 ---
  
+# Marker Access
+To access the HR Manager dashboard:
+- URL: `login.php`
+- Username: `admin`  
+- Password: `admin`
+
+---
+
 # PHP Includes
 Shared UI elements have been extracted into `.inc` files and included across all pages:
  
