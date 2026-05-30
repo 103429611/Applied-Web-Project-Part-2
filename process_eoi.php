@@ -1,45 +1,72 @@
 <?php
 session_start();
+
+// Block direct URL access
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    header("Location: ./apply.php");;
+    header("Location: ./apply.php");
     die('Direct access not permitted');
 }
 
 error_reporting(E_ALL);
+
 require_once("settings.php");
-$conn = mysqli_connect($host,$username,$password,$database);
+
+// Establish connection to database
+$conn = mysqli_connect($host, $username, $password, $database);
 if(!$conn) {
     echo "<p> Database connection failed". mysqli_connect_error(). "</p>";
+    exit();
 }
-// Step 1: Check if form has been submitted using POST method
+
+// Create eoi table if it doesn't exist as the assignment says it
+$create_table = "CREATE TABLE IF NOT EXISTS eoi (
+    eoi_number    INT AUTO_INCREMENT PRIMARY KEY,
+    reference     VARCHAR(5) NOT NULL,
+    first_name    VARCHAR(20) NOT NULL,
+    last_name     VARCHAR(20) NOT NULL,
+    dob           DATE NOT NULL,
+    gender        VARCHAR(20) NOT NULL,
+    address       VARCHAR(40) NOT NULL,
+    suburb        VARCHAR(40) NOT NULL,
+    postcode      INT(11) NOT NULL,
+    state         VARCHAR(10) NOT NULL,
+    email_address VARCHAR(100) NOT NULL,
+    phone_number  INT(11) NOT NULL,
+    skills        VARCHAR(200) NOT NULL,
+    other_skills  TEXT NOT NULL,
+    submitted_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status        ENUM('New','Current','Final') NOT NULL DEFAULT 'New'
+)";
+mysqli_query($conn, $create_table);
+
+// Check if form has been submitted using POST method
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Step 2: Collect and sanitise form inputs
-    $reference = sanitise_input($_POST["reference"]);
-    $firstname = sanitise_input($_POST["firstname"]);
-    $lastname = sanitise_input($_POST["lastname"]);
-    $dob = sanitise_input($_POST["dob"]);
-    $gender = sanitise_input($_POST["gender"]);
-    $other_gender = sanitise_input($_POST["other_gender"]);
-    $address = sanitise_input($_POST["address"]);
-    $suburb = sanitise_input($_POST["suburb"]);
-    $postcode = sanitise_input($_POST["postcode"]);
-    $state = sanitise_input($_POST["state"]);
-    $email = sanitise_input($_POST["email"]);
-    $phone = sanitise_input($_POST["phone"]);
-    $other_skills = sanitise_input($_POST["other_skills"]);
+    // Collect and sanitise form inputs
+    $reference   = sanitise_input($_POST["reference"] ?? '');
+    $firstname   = sanitise_input($_POST["firstname"] ?? '');
+    $lastname    = sanitise_input($_POST["lastname"] ?? '');
+    $dob         = sanitise_input($_POST["dob"] ?? '');
+    $gender      = sanitise_input($_POST["gender"] ?? '');
+    $other_gender = sanitise_input($_POST["other_gender"] ?? '');
+    $address     = sanitise_input($_POST["address"] ?? '');
+    $suburb      = sanitise_input($_POST["suburb"] ?? '');
+    $postcode    = sanitise_input($_POST["postcode"] ?? '');
+    $state       = sanitise_input($_POST["state"] ?? '');
+    $email       = sanitise_input($_POST["email"] ?? '');
+    $phone       = sanitise_input($_POST["phone"] ?? '');
+    $other_skills = sanitise_input($_POST["other_skills"] ?? '');
 
-
-    // Step 3: Handle checkboxes (convert arrays into comma-separated strings)
+    // Handle checkboxes - converts arrays into comma-separated strings
     $skills = isset($_POST["skills"]) ? implode(", ", array_map('sanitise_input', $_POST["skills"])) : "";
 
-    // Step 4: Basic form validation
+    // Server-side validation
     $errors = [];
 
     if (empty($reference)){
         $errors[] = "Reference is required";
     } elseif (!preg_match("/^[a-zA-Z0-9]{5}$/", $reference)) {
-        $errors[] = "Reference must be exactly 5 alphanumeric characters";
+        $errors[] = "Reference must be exactly a 5-digit job reference number (e.g. 10000).";
     }
 
     if (empty($firstname)){
@@ -51,19 +78,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($lastname)){
          $errors[] = "Last name is required.";
     } elseif (!preg_match("/^[a-zA-Z]{1,20}$/", $lastname)) {
-         $errors[] = "Last name must be between 1 and 20 characters and contain only alpa characters.";
+         $errors[] = "Last name must be between 1 and 20 characters and contain only alpha characters.";
     }
 
-    if (empty($dob)) $errors[] = "Date Of Birth is required.";
-
-    if (empty($gender)) $errors[] = "Gender is required.";
-    if (preg_match("/other/", $gender)) $gender = $other_gender;
-    if (empty($gender)) $errors[] = "Please enter other gender";
+    if (empty($dob)) 
+        $errors[] = "Date Of Birth is required.";
+    if (empty($gender)) 
+        $errors[] = "Gender is required.";
+    if (preg_match("/other/", $gender)) 
+        $gender = $other_gender;
+    if (empty($gender)) 
+        $errors[] = "Please enter other gender";
     
 
-    if (empty($address)) $errors[] = "Street address name is required.";
-
-    if (empty($suburb)) $errors[] = "Suburb is required.";
+    if (empty($address)) 
+        $errors[] = "Street address name is required.";
+    if (empty($suburb)) 
+        $errors[] = "Suburb is required.";
 
     if (empty($postcode)){
          $errors[] = "Postcode is required";
@@ -71,14 +102,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          $errors[] = "Postcode must be 4 digits (0–9).";
     }
 
-    if (empty($state)) $errors[] = "State is required.";
+    if (empty($state)) 
+        $errors[] = "State is required.";
 
     if (empty($email)) {
        $errors[] = "Email is required";
      } elseif (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
          $errors[] = "Invalid email format";
     }
-
 
     if (empty($phone)) {
         $errors[] = "Phone number is required.";
@@ -88,17 +119,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $phone = (int)$phone;
     }
     
-
-
-    // Step 5: Show errors or insert data into database
+    // Show errors or insert data into database
     if (!empty($errors)) {
-        // Display all error messages
+       // Display all error messages
        // $queryString = http_build_query(['errors' => $errors, 'old' => $_POST]);
        // header("Location: ./apply.php?" . $queryString);
         
         $_SESSION["errors"] = $errors;
         $_SESSION["id"] = null;
-
         $_SESSION["reference"] = $reference;
         $_SESSION["firstname"] = $firstname;
         $_SESSION["lastname"] = $lastname;
@@ -113,25 +141,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["skills"] = $skills;
         $_SESSION["other_skills"] = $other_skills;
 
-
         header("Location: ./apply.php?#results");
+        exit();
         
     }
-    else{ 
-        $sql = "INSERT INTO eoi (reference, first_name, last_name, dob, gender, address, suburb, postcode, state, email_address, phone_number, skills, other_skills)
-            VALUES ('$reference','$firstname','$lastname','$dob','$gender','$address','$suburb','$postcode','$state','$email','$phone', '$skills', '$other_skills')";
-        if (mysqli_query($conn , $sql)){
-            $_SESSION["id"] = htmlspecialchars(mysqli_insert_id($conn));
-            $_SESSION["errors"] = null;
-            header("Location: ./apply.php?#results");
-        }else{
-            echo "<p style='color:red'> Error:".mysqli_error($conn)."</p>";
-        }
+    else { 
+    // prepared statement prevents SQL injection
+    $stmt = mysqli_prepare($conn, "INSERT INTO eoi (reference, first_name, last_name, dob, gender, address, suburb, postcode, state, email_address, phone_number, skills, other_skills) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"); // 'ssssssssissss' - s=string, i=integer for postcode and phone
+    mysqli_stmt_bind_param($stmt, 'sssssssssisss', $reference, $firstname, $lastname, $dob, $gender, $address, $suburb, $postcode, $state, $email, $phone, $skills, $other_skills);
+    mysqli_stmt_execute($stmt);
+      if (mysqli_stmt_affected_rows($stmt) > 0) {
+        $_SESSION["id"] = htmlspecialchars(mysqli_insert_id($conn));
+        $_SESSION["errors"] = null;
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        header("Location: ./apply.php#results");
+        exit();
+    } else {
+        echo "<p style='color:red'>Error inserting record: " . mysqli_error($conn) . "</p>";
     }
+}
     mysqli_close($conn);
 }
-
-
 
 // Function to sanitise form input
 function sanitise_input($data) {
