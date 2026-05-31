@@ -115,6 +115,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
     }
     else{ 
+        $createTableSql = "CREATE TABLE IF NOT EXISTS eoi (
+        `eoi_number` int(11) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+        `reference` varchar(5) NOT NULL,
+        `first_name` varchar(20) NOT NULL,
+        `last_name` varchar(20) NOT NULL,
+        `dob` date NOT NULL,
+        `gender` varchar(20) NOT NULL,
+        `address` varchar(40) NOT NULL,
+        `suburb` varchar(40) NOT NULL,
+        `postcode` int(11) NOT NULL,
+        `state` varchar(10) NOT NULL,
+        `email_address` varchar(100) NOT NULL,
+        `phone_number` int(11) NOT NULL,
+        `skills` varchar(200) NOT NULL,
+        `other_skills` text NOT NULL,
+        `submitted_at` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+        `status` enum('New','Current','Final') NOT NULL DEFAULT 'New'
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+    
+    if (!mysqli_query($conn, $createTableSql)) {
+            echo "<p style='color:red'> Error creating table: " . mysqli_error($conn) . "</p>";
+            mysqli_close($conn);
+            exit();
+        }    
         $sql = "INSERT INTO eoi (reference, first_name, last_name, dob, gender, address, suburb, postcode, state, email_address, phone_number, skills, other_skills)
             VALUES ('$reference','$firstname','$lastname','$dob','$gender','$address','$suburb','$postcode','$state','$email','$phone', '$skills', '$other_skills')";
         if (mysqli_query($conn , $sql)){
@@ -127,8 +151,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     mysqli_close($conn);
 }
-
-
 
 // Function to sanitise form input
 function sanitise_input($data) {
