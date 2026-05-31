@@ -144,7 +144,6 @@ mysqli_free_result($result);
     <title>InfraWatch – Manage EOIs</title>
     <link rel="stylesheet" href="styles/styles.css">
     <style>
-        /* commented by ashley */
         .manager-bar { 
             display: flex; 
             justify-content: space-between; 
