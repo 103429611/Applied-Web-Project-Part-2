@@ -604,26 +604,26 @@ footer p {
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     }
-.panel h3 { color: #90ee90; margin-top: 0; }
+.panel h3 { color: greenyellow; margin-top: 0; }
 .inline-form { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: flex-end; }
 .inline-form label { font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.2rem; color: #ffffff; }
 .inline-form input[type="text"],
 .inline-form select { padding: 0.5rem 0.7rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; background: #ffffff; color: #000000; }
-.inline-form button { padding: 0.55rem 1.2rem; background: transparent; color: #90ee90; border: 1px solid #90ee90; border-radius: 5px; cursor: pointer; }
-.inline-form button:hover { background: #90ee90; color: #000; }
+.inline-form button { padding: 0.55rem 1.2rem; background: transparent; color: greenyellow; border: 1px solid greenyellow; border-radius: 5px; cursor: pointer; }
+.inline-form button:hover { background: greenyellow; color: #000; }
 .btn-danger { color: #ff6b6b !important; border-color: #ff6b6b !important; }
 .btn-danger:hover { background: #ff6b6b !important; color: #000 !important; }
 .eoi-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-.eoi-table th { background: rgba(144,238,144,0.15); color: #90ee90; padding: 0.6rem 0.8rem; text-align: left; }
+.eoi-table th { background: rgba(144,238,144,0.15); color: greenyellow; padding: 0.6rem 0.8rem; text-align: left; }
 .eoi-table td { padding: 0.55rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.07); color: #ffffff; }
 .eoi-table tr:hover td { background: rgba(255,255,255,0.05); }
 .badge { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
-.badge-new     { background: rgba(144,238,144,0.15); color: #90ee90; border: 1px solid #90ee90; }
+.badge-new     { background: rgba(144,238,144,0.15); color: greenyellow; border: 1px solid greenyellow; }
 .badge-current { background: rgba(255,215,0,0.15); color: #ffd700; border: 1px solid #ffd700; }
 .badge-final   { background: rgba(100,149,237,0.15); color: #6495ed; border: 1px solid #6495ed; }
-.success-msg { background: rgba(144,238,144,0.1); color: #90ee90; border: 1px solid rgba(144,238,144,0.3); border-radius: 6px; padding: 0.8rem; margin-bottom: 1rem; }
-.logout-link { color: #90ee90; padding: 0.4rem 1rem; border-radius: 5px; text-decoration: none; border: 1px solid #90ee90; }
-.logout-link:hover { background: #90ee90; color: #000; }
+.success-msg { background: rgba(144,238,144,0.1); color: greenyellow; border: 1px solid rgba(144,238,144,0.3); border-radius: 6px; padding: 0.8rem; margin-bottom: 1rem; }
+.logout-link { color: greenyellow; padding: 0.4rem 1rem; border-radius: 5px; text-decoration: none; border: 1px solid greenyellow; }
+.logout-link:hover { background: greenyellow; color: #000; }
     
 /* #endregion Noor Section */
 /* section added by Ashley to actually fix the screen width and mobile responsiveness issues */
