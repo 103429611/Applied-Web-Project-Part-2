@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    header("Location: ./apply.php");;
+    header("Location: ./apply.php");
     die('Direct access not permitted');
 }
 

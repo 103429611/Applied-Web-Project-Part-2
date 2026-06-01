@@ -7,8 +7,6 @@
 
 
 <head> <!-- Head containing nesseccary info on Character set, Description, Keywords and Author -->
-
-    <title>Infrawatch - Jobs</title>
     <meta charset="UTF-8">
     <meta name="description" content="Job listings page">
     <meta name="keywords" content="HTML, Doctype, Head, Body, Meta, Paragraph, Headings">
@@ -28,15 +26,13 @@
         #job_descriptions ol li ul li {color: #FFD6F8;}
 
     </style>
-
-</head>
-
-<body>
-    
     <?php
     $page_title = "Jobs"; // Set the specific title for this page
     include 'header.inc'; 
     ?>
+</head>
+
+<body>
 <main>
     <!-- INLINE CSS to change font-size to 2x and color of the text to plum-->
     <h2 style="font-size: 2em; color: plum;">Current Open Jobs</h2>

@@ -18,8 +18,6 @@
     <meta name="keywords" content="smart city, infrastructure, AI cameras, government, monitoring"> <!-- Keywords will help in SEO -->
     <meta name="author" content="Noor Fatima Nisar"> <!-- Taking credit of my work hehe -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>InfraWatch - Home</title> 
     <link rel="stylesheet" href="styles/styles.css"> 
     
     <style>
@@ -44,14 +42,13 @@
           z-index: 1;   /* keeps text above the background */
         }
     </style>
-</head>
-
-<body>
-
-<?php
+    <?php
     $page_title = "Index"; // Set the specific title for this page
     include 'header.inc'; 
 ?>
+</head>
+
+<body>
 
 <main>
     <section class="hero-section">
