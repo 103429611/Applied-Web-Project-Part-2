@@ -47,7 +47,6 @@
     include 'header.inc'; 
 ?>
 </head>
-
 <body>
 
 <main>
