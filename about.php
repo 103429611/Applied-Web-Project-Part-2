@@ -37,9 +37,6 @@
     </style>
     <?php $page_title = "About"; // Set the specific title for this page
     include 'header.inc'; ?> <!-- gets header data for this page -->
-</head>
-
-<body>
 
 
     <h1>We are...</h1>

@@ -1,6 +1,8 @@
         <title>
            <?php echo isset($page_title) ? $page_title . " | InfraWatch" : "InfraWatch"; ?>
         </title>
+</head>
+<body>
 <div class = "main_header">
     <header class = "sidebar">
         <input type="checkbox" id="menu-toggle" hidden>

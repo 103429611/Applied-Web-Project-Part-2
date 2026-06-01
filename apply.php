@@ -27,8 +27,7 @@
     $page_title = "Apply"; // Set the specific title for this page
     include 'header.inc';
     ?>
-    </head>
-<body>
+
 
    
     <div id="applydiv">

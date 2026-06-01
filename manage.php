@@ -154,8 +154,7 @@ mysqli_free_result($result);
     <?php 
     $page_title = "Manage EOIS";
     include 'header.inc'; ?>
-</head>
-<body>
+
 
 <main>
 <div class="manage-container">

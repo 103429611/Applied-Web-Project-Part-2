@@ -78,7 +78,8 @@ body {
     background-color: #0e1318;
     color: white;
     width: 100%;
-    margin-right:10%
+    margin-right:10%;
+    margin-left:10%;
 }
 
 
@@ -219,10 +220,11 @@ and ends in the footer file */
 .page_content{
     display:flex;
     flex-direction: column;
+    justify-content: center;
     flex-wrap: nowrap;
     flex-grow:1;
     padding-right:2vw;
-    width:90vw;
+    width:100%;
     font-size: 1rem;
     margin-left: 5%;
     margin-right: 5%;

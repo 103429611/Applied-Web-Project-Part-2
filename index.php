@@ -46,8 +46,6 @@
     $page_title = "Index"; // Set the specific title for this page
     include 'header.inc'; 
 ?>
-</head>
-<body>
 
 <main>
     <section class="hero-section">

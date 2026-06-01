@@ -30,9 +30,7 @@
     $page_title = "Jobs"; // Set the specific title for this page
     include 'header.inc'; 
     ?>
-</head>
 
-<body>
 <main>
     <!-- INLINE CSS to change font-size to 2x and color of the text to plum-->
     <h2 style="font-size: 2em; color: plum;">Current Open Jobs</h2>
