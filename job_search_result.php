@@ -23,15 +23,10 @@
 
     </style>
 
-</head>
-
-<body>
-    
     <?php
     $page_title = "Jobs"; // Set the specific title for this page
     include 'header.inc'; 
     ?>
-
 <a href="jobs.php">
     <div class="search-container">
     <button>Return To Job Listings</button>

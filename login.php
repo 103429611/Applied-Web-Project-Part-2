@@ -82,12 +82,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InfraWatch – Manager Login</title>
     <link rel="stylesheet" href="styles/styles.css">
-</head>
-<body>
+    <?php
+    $page_title = "Manager Login";
+     include 'header.inc'; ?>
 
-<?php include 'header.inc'; ?>
+
 
 <main style="display: flex; justify-content: center; align-items: center; padding: 3rem 1rem;">
     <div class="panel" style="width: 100%; max-width: 450px; padding: 2.5rem; box-sizing: border-box; text-align: center; margin: 0 auto;">

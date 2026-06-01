@@ -141,7 +141,6 @@ mysqli_free_result($result);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InfraWatch – Manage EOIs</title>
     <link rel="stylesheet" href="styles/styles.css">
     <style>
         .manager-bar { 
@@ -152,10 +151,10 @@ mysqli_free_result($result);
         }
         .table-scroll { overflow-x: auto; }
     </style>
-</head>
-<body>
+    <?php 
+    $page_title = "Manage EOIS";
+    include 'header.inc'; ?>
 
-<?php include 'header.inc'; ?>
 
 <main>
 <div class="manage-container">

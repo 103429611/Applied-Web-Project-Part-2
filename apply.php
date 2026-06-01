@@ -14,7 +14,6 @@
     <meta name="description" content="Apply page">
     <meta name="keywords" content="Application, Smart City, Energy, Employment, Infrastructure">
     <meta name="author" content="Alexandra Stanford">
-    <title>InfraWatch - Apply</title>
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -28,8 +27,7 @@
     $page_title = "Apply"; // Set the specific title for this page
     include 'header.inc';
     ?>
-    </head>
-<body>
+
 
    
     <div id="applydiv">
@@ -69,7 +67,6 @@
             mysqli_close($conn);
             };
             ?>
-            <!--Exactly 5 alphanumeric characters-->
         </fieldset>
         <!--Personal details fieldset-->
         <fieldset>
@@ -77,15 +74,15 @@
             <label for="firstname">First Name:</label><br>                          
             <input class="alphanumerical20" type="text" id="firstname" name="firstname" placeholder="Max 20 characters"
             value="<?php echo isset($_SESSION['firstname']) ? htmlspecialchars($_SESSION['firstname']) : ''; ?>"><br> 
-            <!--Max 20 alphanumerical characters-->
+
             <label for="lastname">Last Name:</label><br>
             <input class="alphanumerical20" type="text" id="lastname" name="lastname" placeholder="Max 20 characters"
             value="<?php echo isset($_SESSION['lastname']) ? htmlspecialchars($_SESSION['lastname']) : ''; ?>"><br>
-            <!--Max 20 alphanumerical characters-->
+
             <label for="dob">Date Of Birth:</label><br>
             <input type="date" id="dob" name="dob"
             value="<?php echo isset($_SESSION['dob']) ? htmlspecialchars($_SESSION['dob']) : ''; ?>">
-            <!--dd/mm/yyyy regex format-->
+
             <!--Gender fieldset-->
             <fieldset>
                 <!--Gender radio fieldset-->
@@ -123,11 +120,10 @@
                     if (preg_match("/prefer_not_to_say/", $_SESSION['gender'])){
                     echo " checked = checked";
                     }
-                }
+                }else
                 ?>>
                 <label for="prefer_not_to_say">Prefer not to say</label><br>
-                <!-- Custom Gender field, probably needs more work to post the value of the
-                text box instead of posting seperately, probably needs JS but that isn't allowed -->
+
                 <input type="radio" name="gender" value="other" id="other"
                 <?php if (isset($_SESSION['gender'])){
                     if (!preg_match("/female|male|non-binary|prefer_not_to_say/", $_SESSION['gender'])){
@@ -172,7 +168,7 @@
                 <option value="VIC" <?php if (isset($_SESSION['state']) && preg_match("/VIC/", $_SESSION['state'])){
                     echo "selected";
                 }?>
-                checked = "checked" >Victoria</option>
+                >Victoria</option>
                 <option value="NSW"<?php if (isset($_SESSION['state']) && preg_match("/NSW/", $_SESSION['state'])){
                     echo "selected";
                 }?>
@@ -221,8 +217,8 @@
 
         <legend>&nbsp;Skills / Qualifications:&nbsp;</legend>
                 
-            <input type="checkbox" name="skills[]" value="AI infrustructure" id="ai"
-            <?php if (isset($_SESSION['skills']) && preg_match("/AI infrustructure/", $_SESSION['skills'])){
+            <input type="checkbox" name="skills[]" value="AI infrastructure" id="ai"
+            <?php if (isset($_SESSION['skills']) && preg_match("/AI infrastructure/", $_SESSION['skills'])){
                     echo "checked";
                 }?>>
             <label for="ai">A stong and up to date understanding of AI infrustructure</label><br>
@@ -281,7 +277,7 @@
                 }?>>
             <label for="coffee">A taste for good jokes and coffee</label><br>
             <br>
-            <label for="other-skills">Other Skills:</label>
+            <label for="other_skills">Other Skills:</label>
             <br>
             <textarea name="other_skills" id="other_skills" cols="50" rows="5"
             style="resize:vertical; width: 98%;"
@@ -311,13 +307,13 @@
     }
     if (isset($id)){
         echo "<p style='color:green;'><strong>Submitted, your EOI number is: " . htmlspecialchars($id) ."</strong></p>";
-
     }
         ?>
     </div>
 </div>
     <?php include 'footer.inc'; 
-    session_unset();      // Unset all session variables
-    session_destroy();    // Destroy the session?>
+            session_unset();      // Unset all session variables
+        session_destroy();    // Destroy the session>
+?>
 </body>
 </html>
