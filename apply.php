@@ -14,7 +14,6 @@
     <meta name="description" content="Apply page">
     <meta name="keywords" content="Application, Smart City, Energy, Employment, Infrastructure">
     <meta name="author" content="Alexandra Stanford">
-    <title>InfraWatch - Apply</title>
     <link rel="stylesheet" href="styles/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -69,7 +68,6 @@
             mysqli_close($conn);
             };
             ?>
-            <!--Exactly 5 alphanumeric characters-->
         </fieldset>
         <!--Personal details fieldset-->
         <fieldset>
@@ -77,15 +75,15 @@
             <label for="firstname">First Name:</label><br>                          
             <input class="alphanumerical20" type="text" id="firstname" name="firstname" placeholder="Max 20 characters"
             value="<?php echo isset($_SESSION['firstname']) ? htmlspecialchars($_SESSION['firstname']) : ''; ?>"><br> 
-            <!--Max 20 alphanumerical characters-->
+
             <label for="lastname">Last Name:</label><br>
             <input class="alphanumerical20" type="text" id="lastname" name="lastname" placeholder="Max 20 characters"
             value="<?php echo isset($_SESSION['lastname']) ? htmlspecialchars($_SESSION['lastname']) : ''; ?>"><br>
-            <!--Max 20 alphanumerical characters-->
+
             <label for="dob">Date Of Birth:</label><br>
             <input type="date" id="dob" name="dob"
             value="<?php echo isset($_SESSION['dob']) ? htmlspecialchars($_SESSION['dob']) : ''; ?>">
-            <!--dd/mm/yyyy regex format-->
+
             <!--Gender fieldset-->
             <fieldset>
                 <!--Gender radio fieldset-->
@@ -172,7 +170,7 @@
                 <option value="VIC" <?php if (isset($_SESSION['state']) && preg_match("/VIC/", $_SESSION['state'])){
                     echo "selected";
                 }?>
-                checked = "checked" >Victoria</option>
+                >Victoria</option>
                 <option value="NSW"<?php if (isset($_SESSION['state']) && preg_match("/NSW/", $_SESSION['state'])){
                     echo "selected";
                 }?>
@@ -281,7 +279,7 @@
                 }?>>
             <label for="coffee">A taste for good jokes and coffee</label><br>
             <br>
-            <label for="other-skills">Other Skills:</label>
+            <label for="other_skills">Other Skills:</label>
             <br>
             <textarea name="other_skills" id="other_skills" cols="50" rows="5"
             style="resize:vertical; width: 98%;"
