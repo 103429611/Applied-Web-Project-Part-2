@@ -32,7 +32,7 @@
             border: 3px double #ffff00;
             float: left;
             max-height: 64vw;
-            max-width: auto;
+            max-width: 100%;
             width: 64vw;
             height: auto;
             margin: 1em;
