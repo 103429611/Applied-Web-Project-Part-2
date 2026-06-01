@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>InfraWatch - About</title> 
     <link rel="stylesheet" href="styles/styles.css"> <!-- Gets the styles.css data for the webpage -->
 
      <!-- Gets local css data for this webpage -->
@@ -38,18 +37,17 @@
             margin: 1em;
         }
     </style>
-</head>
 
-<body>
 <?php $page_title = "About"; // Set the specific title for this page
     include 'header.inc'; ?> <!-- gets header data for this page -->
 
     <h1>We are...</h1>
     <ul>
-        <li>Group 2</li>
+        <li>Group 2
         <ul>
             <li>COS10026 at 12:30 - 2:30 on a Thursday</li> <!--Nested list-->
         </ul>
+        </li>
     </ul>
 
     <h2>Contributions of the team:</h2>
