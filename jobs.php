@@ -49,18 +49,23 @@
     </aside>
 
     <section id = "job_search" >
+        <h2>Job Search</h2>
         <div class="search-container">
-        <form action="job_search_result.php" method="GET">
+        <form action="job_search_result.php" method="GET"></form>
         <label for="job_ref">Search Job Ref No.</label>
         <input type="search" id="job_ref" name="job_ref" placeholder="Search Job Ref No." required>
         <button type="submit">Search</button>
         </div>
-</form>
     </section>
 
     <!--  Job descriptions of current open jobs -->
     <section id="job_descriptions">
-
+        <h2>Welcome to Infrawatch Jobs Page</h2>
+        <p> We are seeking many experience and new to the field Team Members as we expand our network of smart camera Infrastructure, 
+            If you have 10 years of experience or even 10 minutes of experience we want to hear from you.</p>
+        <p> We are a company focused on city safety and better government spending, utilising our AI camera tech we aim to roll out multiple deployments locally and nationally to minimise crime, theft, murders and assist goverments spend there money smarter. 
+            If this sounds like something you would be interested in then view the open jobs below, apply, or reach out to our hiring team with any questions at  <a href="mailto:careers@Infrawatch.com.au">careers@Infrawatch.com.au</a></p>
+  
         <?php require_once("settings.php"); 
         $conn = mysqli_connect($host, $username, $password, $database );
         if(!$conn) {
@@ -70,7 +75,7 @@
             $sql = "SELECT job_ref, job_title, salary, reports_to, description, essential_requirements, pref_requirements FROM jobs";
             $result = mysqli_query($conn, $sql);
             if($result && mysqli_num_rows($result) > 0){
-                echo "<table border='1' cellpadding='1'>";
+                echo "<table>";
                 echo "<tr><th>Job Ref</th><th>Title</th><th>Salary</th><th>Reports To</th></tr>";
             while($row = mysqli_fetch_assoc($result)){
                     $job_ref = htmlspecialchars($row['job_ref']);

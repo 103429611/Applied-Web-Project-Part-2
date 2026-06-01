@@ -2,7 +2,6 @@
 <html lang="en">
 <head> <!-- Head containing nesseccary info on Character set, Description, Keywords and Author -->
 
-    <title>Infrawatch - Jobs</title>
     <meta charset="UTF-8">
     <meta name="description" content="Job listings page">
     <meta name="keywords" content="HTML, Doctype, Head, Body, Meta, Paragraph, Headings">
@@ -27,11 +26,11 @@
     $page_title = "Jobs"; // Set the specific title for this page
     include 'header.inc'; 
     ?>
-<a href="jobs.php">
-    <div class="search-container">
-    <button>Return To Job Listings</button>
-    </div>
-</a>
+
+<div class="search-container">
+    <a href="jobs.php" class="btn-primary">Return To Job Listings</a>
+</div>
+
 <?php
 
 require_once "settings.php";
@@ -57,7 +56,7 @@ require_once "settings.php";
                 $pref_array = explode(", ", $pref_requirements);
 
                 echo "<section class ='job_entry'>";
-                echo "<h4>$job_title</h4>"; 
+                echo "<h2>$job_title</h2>"; 
                 echo "<p><strong>Job ref: </strong>$job_ref</p>";
                 echo "<p><strong>Salary: $</strong>$salary</p>";
                 echo "<p><strong>Reporting to: </strong>$reports_to</p>";
@@ -87,11 +86,9 @@ require_once "settings.php";
 mysqli_close($conn);
 ?>
 
-<a href="apply.php?job_ref=<?php echo $job_ref; ?>">
-    <div class="search-container">
-    <button type="button">Apply Now!</button>
-    </div>
-</a>
+<div class="search-container">
+    <a href="apply.php?job_ref=<?php echo $job_ref; ?>" class="btn-primary">Apply Now!</a>
+</div>
     <?php include 'footer.inc'; ?>
 </body>
 </html>

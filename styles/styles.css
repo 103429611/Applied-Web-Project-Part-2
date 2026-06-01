@@ -128,7 +128,21 @@ aside {
     width: 80%;
     box-shadow: 10px 10px 5px #aaaaaa;
 }
+.btn-primary {
+    padding: 0.5em 1.2em;
+    background-color: #111920;
+    color: greenyellow;
+    border: 1px solid greenyellow;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s;
+}
 
+.btn-primary:hover {
+    background-color:greenyellow; /* Darker shade for hover effect */
+    color: #000000;
+}
 
 
 
