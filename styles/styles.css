@@ -77,9 +77,7 @@ a:hover {
 body {
     background-color: #0e1318;
     color: white;
-    width: 100%;
-    margin-right:10%;
-    margin-left:10%;
+    width: 100vw;
 }
 
 
@@ -153,7 +151,6 @@ aside {
 .main_header{
     display: flex;
     flex-direction: row;
-
     width:100vw;
     align-items: flex-start;
 }
@@ -179,7 +176,7 @@ aside {
     align-items: center;
     justify-content: center;
 
-    padding-right:0;
+    padding:1em;
 }
 .header_content{
         padding-right:4vw;
@@ -224,7 +221,7 @@ and ends in the footer file */
     flex-wrap: nowrap;
     flex-grow:1;
     padding-right:2vw;
-    width:100%;
+    width:90%;
     font-size: 1rem;
     margin-left: 5%;
     margin-right: 5%;
