@@ -121,11 +121,10 @@
                     if (preg_match("/prefer_not_to_say/", $_SESSION['gender'])){
                     echo " checked = checked";
                     }
-                }
+                }else
                 ?>>
                 <label for="prefer_not_to_say">Prefer not to say</label><br>
-                <!-- Custom Gender field, probably needs more work to post the value of the
-                text box instead of posting seperately, probably needs JS but that isn't allowed -->
+
                 <input type="radio" name="gender" value="other" id="other"
                 <?php if (isset($_SESSION['gender'])){
                     if (!preg_match("/female|male|non-binary|prefer_not_to_say/", $_SESSION['gender'])){
@@ -219,8 +218,8 @@
 
         <legend>&nbsp;Skills / Qualifications:&nbsp;</legend>
                 
-            <input type="checkbox" name="skills[]" value="AI infrustructure" id="ai"
-            <?php if (isset($_SESSION['skills']) && preg_match("/AI infrustructure/", $_SESSION['skills'])){
+            <input type="checkbox" name="skills[]" value="AI infrastructure" id="ai"
+            <?php if (isset($_SESSION['skills']) && preg_match("/AI infrastructure/", $_SESSION['skills'])){
                     echo "checked";
                 }?>>
             <label for="ai">A stong and up to date understanding of AI infrustructure</label><br>
@@ -309,13 +308,13 @@
     }
     if (isset($id)){
         echo "<p style='color:green;'><strong>Submitted, your EOI number is: " . htmlspecialchars($id) ."</strong></p>";
-
     }
         ?>
     </div>
 </div>
     <?php include 'footer.inc'; 
-    session_unset();      // Unset all session variables
-    session_destroy();    // Destroy the session?>
+            session_unset();      // Unset all session variables
+        session_destroy();    // Destroy the session>
+?>
 </body>
 </html>

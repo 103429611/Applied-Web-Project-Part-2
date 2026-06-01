@@ -19,7 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = sanitise_input($_POST["firstname"]);
     $lastname = sanitise_input($_POST["lastname"]);
     $dob = sanitise_input($_POST["dob"]);
+    if (isset($_POST["gender"])){
     $gender = sanitise_input($_POST["gender"]);
+    }else{
+        $gender = null;
+    }
     $other_gender = sanitise_input($_POST["other_gender"]);
     $address = sanitise_input($_POST["address"]);
     $suburb = sanitise_input($_POST["suburb"]);
@@ -57,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($dob)) $errors[] = "Date Of Birth is required.";
 
     if (empty($gender)) $errors[] = "Gender is required.";
-    if (preg_match("/other/", $gender)) $gender = $other_gender;
+    if (!empty($gender)&&(preg_match("/other/", $gender))) $gender = $other_gender;
     
 
     if (empty($address)) $errors[] = "Street address name is required.";
