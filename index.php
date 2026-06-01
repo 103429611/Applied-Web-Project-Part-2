@@ -30,7 +30,7 @@
           content: "";
           position: absolute;
           inset: 0;
-          background-image: url("images/smartcity.jpg");
+          background-image: url("styles/images/smartcity.jpg");
           background-size: cover;
           background-position: center;
           opacity: 0.15;   /* lower = more transparent */
