@@ -48,15 +48,16 @@
         <p>Don't tell them I'm hiding here!!</p>
     </aside>
 
-    <section id = "job_search" >
-        <h2>Job Search</h2>
-        <div class="search-container">
-        <form action="job_search_result.php" method="GET"></form>
-        <label for="job_ref">Search Job Ref No.</label>
-        <input type="search" id="job_ref" name="job_ref" placeholder="Search Job Ref No." required>
-        <button type="submit">Search</button>
-        </div>
-    </section>
+<section id="job_search">
+    <h2>Job Search</h2>
+    <div class="search-container">
+        <form action="job_search_result.php" method="GET">
+            <label for="job_ref">Search Job Ref No.</label>
+            <input type="search" id="job_ref" name="job_ref" placeholder="Search Job Ref No." required>
+            <button type="submit">Search</button>
+        </form> 
+    </div>
+</section>
 
     <!--  Job descriptions of current open jobs -->
     <section id="job_descriptions">
