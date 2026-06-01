@@ -131,7 +131,8 @@
                     }
                 }
                 ?>>
-                <label for="other">Other:</label><br>
+                <label for="other" class="visually-hidden">Other:</label>
+                <label for="other_gender">Other:</label><br>
                 <input type="text" name="other_gender" id="other_gender" placeholder="Please specify:"
                 <?php if (isset($_SESSION['gender'])){
                     if (!preg_match("/female|male|non-binary|prefer_not_to_say/", $_SESSION['gender'])){
